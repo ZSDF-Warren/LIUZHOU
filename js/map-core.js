@@ -1,11 +1,93 @@
 /**
  * 地图核心模块
  * 初始化地图、管理 markers、坐标转换
+ * 使用自定义SVG图钉，不同分类有不同图标
  */
 
 // 坐标直接使用（原始数据已是 GCJ-02）
 function toGCJ02(lat, lng) {
     return [lat, lng];
+}
+
+// ===== 分类图标配置 =====
+const CATEGORY_ICONS = {
+    landmark:    { icon: '🏛️', pinColor: '#E53935', label: '地标' },
+    nature:      { icon: '🌿', pinColor: '#FB8C00', label: '自然' },
+    culture:     { icon: '📚', pinColor: '#43A047', label: '人文' },
+    night:       { icon: '🌙', pinColor: '#1E88E5', label: '夜景' },
+    ethnic:      { icon: '🎭', pinColor: '#8E24AA', label: '民族' },
+    food:        { icon: '🍽️', pinColor: '#00897B', label: '美食' },
+    luosifen:    { icon: '🍜', pinColor: '#D84315', label: '螺蛳粉' },
+    foodstreet:  { icon: '🏮', pinColor: '#FF6F00', label: '美食街' },
+    xhshot:      { icon: '🔥', pinColor: '#FF1744', label: '热门' }
+};
+
+// ===== SVG 图钉生成器 =====
+function createPinSVG(color) {
+    return `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="44" viewBox="0 0 36 44">
+        <defs>
+            <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" style="stop-color:${color};stop-opacity:1"/>
+                <stop offset="100%" style="stop-color:${adjustColor(color, -30)};stop-opacity:1"/>
+            </linearGradient>
+            <filter id="s">
+                <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.3"/>
+            </filter>
+        </defs>
+        <path d="M18 0C8.06 0 0 7.06 0 16c0 11 18 28 18 28s18-17 18-28C36 7.06 27.94 0 18 0z" fill="url(#g)" filter="url(#s)"/>
+        <circle cx="18" cy="15" r="10" fill="rgba(255,255,255,0.25)"/>
+    </svg>`;
+}
+
+function adjustColor(hex, amount) {
+    hex = hex.replace('#', '');
+    const r = Math.max(0, Math.min(255, parseInt(hex.substr(0,2), 16) + amount));
+    const g = Math.max(0, Math.min(255, parseInt(hex.substr(2,2), 16) + amount));
+    const b = Math.max(0, Math.min(255, parseInt(hex.substr(4,2), 16) + amount));
+    return '#' + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+}
+
+// ===== Marker 图标工厂 =====
+function createIcon(color, label, cat, delay) {
+    const catConf = CATEGORY_ICONS[cat] || CATEGORY_ICONS.landmark;
+    const pinSvg = encodeURIComponent(createPinSVG(catConf.pinColor));
+
+    return L.divIcon({
+        className: 'custom-marker',
+        html: `<div class="marker-pin" style="animation-delay:${(delay || 0) * 0.04}s">
+            <img class="marker-pin-bg" src="data:image/svg+xml,${pinSvg}" alt="">
+            <span class="marker-pin-icon">${catConf.icon}</span>
+        </div>`,
+        iconSize: [36, 44],
+        iconAnchor: [18, 44],
+        popupAnchor: [0, -44]
+    });
+}
+
+function createActiveIcon(color, label, cat) {
+    const catConf = CATEGORY_ICONS[cat] || CATEGORY_ICONS.landmark;
+    const pinSvg = encodeURIComponent(createPinSVG(catConf.pinColor));
+
+    return L.divIcon({
+        className: 'custom-marker marker-active',
+        html: `<div class="marker-pin" style="transform:scale(1.25);">
+            <img class="marker-pin-bg" src="data:image/svg+xml,${pinSvg}" alt="">
+            <span class="marker-pin-icon" style="font-size:18px;">${catConf.icon}</span>
+        </div>`,
+        iconSize: [45, 55],
+        iconAnchor: [22, 55],
+        popupAnchor: [0, -55]
+    });
+}
+
+function createRouteStepIcon(index, color) {
+    return L.divIcon({
+        className: 'custom-marker',
+        html: `<div style="width:28px;height:28px;background:${color};border:2.5px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;color:white;font-family:sans-serif;">${index}</div>`,
+        iconSize: [28, 28],
+        iconAnchor: [14, 14],
+        popupAnchor: [0, -18]
+    });
 }
 
 // ===== 地图初始化 =====
@@ -24,45 +106,14 @@ L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scal
     attribution: '&copy; 高德地图'
 }).addTo(map);
 
-// ===== Marker 图标工厂 =====
-function createIcon(color, label) {
-    return L.divIcon({
-        className: '',
-        html: `<div style="width:32px;height:32px;background:${color};border:3px solid white;border-radius:50%;box-shadow:0 2px 8px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:white;font-family:sans-serif;">${label}</div>`,
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
-        popupAnchor: [0, -20]
-    });
-}
-
-function createActiveIcon(color, label) {
-    return L.divIcon({
-        className: '',
-        html: `<div style="width:42px;height:42px;background:${color};border:4px solid #FFD54F;border-radius:50%;box-shadow:0 0 0 4px rgba(255,213,79,0.3),0 4px 12px rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:white;font-family:sans-serif;transition:all 0.2s;">${label}</div>`,
-        iconSize: [42, 42],
-        iconAnchor: [21, 21],
-        popupAnchor: [0, -24]
-    });
-}
-
-function createRouteStepIcon(index, color) {
-    return L.divIcon({
-        className: '',
-        html: `<div style="width:26px;height:26px;background:${color};border:2px solid white;border-radius:50%;box-shadow:0 2px 6px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:white;font-family:sans-serif;">${index}</div>`,
-        iconSize: [26, 26],
-        iconAnchor: [13, 13],
-        popupAnchor: [0, -16]
-    });
-}
-
 // ===== Marker 管理 =====
 const markers = {};
 const markerLayer = L.layerGroup().addTo(map);
 const routeLayer = L.layerGroup(); // 路线图层（不默认添加）
 
 function initMarkers() {
-    ATTRACTIONS.forEach(a => {
-        const icon = createIcon(a.color, a.id);
+    ATTRACTIONS.forEach((a, idx) => {
+        const icon = createIcon(a.color, a.id, a.cat, idx);
         const gcjPos = toGCJ02(a.lat, a.lng);
         const marker = L.marker(gcjPos, { icon }).addTo(markerLayer);
         marker.bindPopup(`<div class="popup-title">${a.name}</div><div class="popup-loc">${a.loc}</div>`, { maxWidth: 220, closeButton: false });

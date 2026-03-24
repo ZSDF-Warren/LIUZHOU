@@ -1,6 +1,6 @@
 /**
  * 应用入口模块
- * 初始化所有功能、绑定事件
+ * 初始化所有功能、绑定事件、更新日志
  */
 
 // ===== 初始化 Markers =====
@@ -30,7 +30,8 @@ fitAllBounds();
         { id: 'btnDress',   cls: 'side-btn-dress',   emoji: '👗', label: '穿衣建议' },
         { id: 'btnPack',    cls: 'side-btn-pack',    emoji: '🎒', label: '出行准备' },
         { id: 'btnGuide',   cls: 'side-btn-guide',   emoji: '📖', label: '攻略参考' },
-        { id: 'btnFitAll',  cls: 'side-btn-fit',     emoji: '📌', label: '全部景点' }
+        { id: 'btnFitAll',  cls: 'side-btn-fit',     emoji: '📌', label: '全部景点' },
+        { id: 'btnChangelog', cls: 'side-btn-changelog', emoji: '📋', label: '更新日志' }
     ];
     container.innerHTML = buttons.map(b => `
         <button class="side-btn ${b.cls}" id="${b.id}">
@@ -45,14 +46,16 @@ const scrollEl = document.getElementById('attractionsScroll');
 
 function renderCards(list) {
     scrollEl.innerHTML = '';
-    list.forEach(a => {
+    list.forEach((a, idx) => {
         const tags = a.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join('');
+        const catConf = CATEGORY_ICONS[a.cat] || CATEGORY_ICONS.landmark;
         const card = document.createElement('div');
         card.className = 'attr-card';
         card.dataset.id = a.id;
+        card.style.animationDelay = `${idx * 0.05}s`;
         card.innerHTML = `
             <div class="card-top">
-                <div class="card-num" style="background:${a.color}">${a.id}</div>
+                <div class="card-num" style="background:${a.color}">${catConf.icon}</div>
                 <div class="card-name">${a.name}</div>
             </div>
             <div class="card-loc">${a.loc}</div>
@@ -84,10 +87,10 @@ function selectAttraction(id) {
 
     if (prev && markers[prev]) {
         const p = markers[prev].data;
-        markers[prev].marker.setIcon(createIcon(p.color, p.id));
+        markers[prev].marker.setIcon(createIcon(p.color, p.id, p.cat, 0));
     }
     if (markers[id]) {
-        markers[id].marker.setIcon(createActiveIcon(a.color, a.id));
+        markers[id].marker.setIcon(createActiveIcon(a.color, a.id, a.cat));
         const gcjTarget = toGCJ02(a.lat, a.lng);
         map.flyTo(gcjTarget, a.lat > 25 ? 11 : 14, { duration: 0.8 });
         markers[id].marker.openPopup();
@@ -103,9 +106,10 @@ const detailBody = document.getElementById('detailBody');
 
 function showDetail(a) {
     const tags = a.tags.map(t => `<span class="tag ${t.c}">${t.t}</span>`).join('');
+    const catConf = CATEGORY_ICONS[a.cat] || CATEGORY_ICONS.landmark;
     detailBody.innerHTML = `
         <div class="detail-header">
-            <div class="detail-num" style="background:${a.color}">${a.id}</div>
+            <div class="detail-num" style="background:${a.color}">${catConf.icon}</div>
             <div class="detail-title">${a.name}</div>
         </div>
         <div class="detail-loc">${a.loc}</div>
@@ -140,8 +144,8 @@ document.getElementById('filterChips').addEventListener('click', (e) => {
     markerLayer.clearLayers();
     const filtered = filter === 'all' ? ATTRACTIONS : ATTRACTIONS.filter(a => a.cat === filter);
 
-    filtered.forEach(a => {
-        const icon = createIcon(a.color, a.id);
+    filtered.forEach((a, idx) => {
+        const icon = createIcon(a.color, a.id, a.cat, idx);
         const gcjPos = toGCJ02(a.lat, a.lng);
         const marker = L.marker(gcjPos, { icon }).addTo(markerLayer);
         marker.bindPopup(`<div class="popup-title">${a.name}</div><div class="popup-loc">${a.loc}</div>`, { maxWidth: 220, closeButton: false });
@@ -201,3 +205,72 @@ document.getElementById('panelHandle').addEventListener('click', () => {
     panelHidden = !panelHidden;
     panel.classList.toggle('hidden', panelHidden);
 });
+
+// ===== 更新日志 =====
+const CHANGELOG_DATA = [
+    {
+        date: '2026-03-24',
+        items: [
+            { badge: 'feature', text: '全面UI动画优化：Marker弹跳入场、卡片渐入、面板丝滑滑入滑出' },
+            { badge: 'feature', text: '为9个分类使用不同自定义SVG图钉：地标🏛️ 自然🌿 人文📚 夜景🌙 民族🎭 美食🍽️ 螺蛳粉🍜 美食街🏮 热门🔥' },
+            { badge: 'new', text: '新增「更新日志」按钮，可查看项目历史变更记录' },
+            { badge: 'improve', text: '按钮/芯片/卡片交互动效全面升级，hover & active反馈更丝滑' },
+            { badge: 'improve', text: '面板弹出使用弹簧曲线动画 + 毛玻璃背景遮罩' },
+            { badge: 'improve', text: '时间轴项目逐条淡入动画，增加视觉层次感' }
+        ]
+    },
+    {
+        date: '2026-03-24',
+        subtitle: '早期更新',
+        items: [
+            { badge: 'feature', text: '项目模块化重构：拆分为多文件结构（data / js / styles）' },
+            { badge: 'new', text: '新增行程路线面板：3天行程时间轴 + 地图路线绘制' },
+            { badge: 'new', text: '新增55个景点/美食/螺蛳粉店标记点' },
+            { badge: 'new', text: '新增小红书攻略参考面板和高德2025状元榜数据' },
+            { badge: 'new', text: '新增天气预报、穿衣建议、出行准备清单面板' },
+            { badge: 'feature', text: '支持分类筛选：9个分类 + 底部卡片横滑 + 详情抽屉' }
+        ]
+    },
+    {
+        date: '2026-03-23',
+        items: [
+            { badge: 'new', text: '项目创建：柳州旅行景点地图 v1.0' },
+            { badge: 'feature', text: '使用 Leaflet + 高德瓦片构建交互式地图' },
+            { badge: 'feature', text: '初始景点数据采集和页面布局设计' }
+        ]
+    }
+];
+
+function getChangelogHTML() {
+    const badgeMap = {
+        'new':     '<span class="changelog-badge changelog-badge-new">NEW</span>',
+        'fix':     '<span class="changelog-badge changelog-badge-fix">FIX</span>',
+        'improve': '<span class="changelog-badge changelog-badge-improve">优化</span>',
+        'feature': '<span class="changelog-badge changelog-badge-feature">功能</span>'
+    };
+
+    return CHANGELOG_DATA.map((entry, idx) => `
+        <div class="changelog-entry" style="animation-delay:${idx * 0.1}s">
+            <div class="changelog-date">📅 ${entry.date}${entry.subtitle ? ' · ' + entry.subtitle : ''}</div>
+            <ul class="changelog-items">
+                ${entry.items.map(item => `<li>${badgeMap[item.badge] || ''}${item.text}</li>`).join('')}
+            </ul>
+        </div>
+    `).join('');
+}
+
+function showChangelog() {
+    const body = document.getElementById('changelogBody');
+    body.innerHTML = getChangelogHTML();
+    document.getElementById('changelogOverlay').classList.add('show');
+    document.getElementById('changelogPanel').classList.add('show');
+}
+
+function hideChangelog() {
+    document.getElementById('changelogOverlay').classList.remove('show');
+    document.getElementById('changelogPanel').classList.remove('show');
+}
+
+document.getElementById('btnChangelog').addEventListener('click', showChangelog);
+document.getElementById('changelogOverlay').addEventListener('click', hideChangelog);
+document.getElementById('changelogClose').addEventListener('click', hideChangelog);
