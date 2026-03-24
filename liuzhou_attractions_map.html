@@ -87,38 +87,67 @@
         .chip-food { background: rgba(0,137,123,0.85); color: white; }
         .chip-luosifen { background: rgba(216,67,21,0.85); color: white; }
         .chip-foodstreet { background: rgba(255,111,0,0.85); color: white; }
+        .chip-xhshot { background: rgba(255,23,68,0.85); color: white; }
 
         .chip.active { transform: scale(1.05); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 
-        /* ===== 右侧功能按钮 ===== */
+        /* ===== 右侧吸附按钮 ===== */
         .side-btns {
             position: fixed;
-            right: 12px;
+            right: 0;
             top: 50%;
             transform: translateY(-50%);
             z-index: 100;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
         }
 
         .side-btn {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 14px 10px 12px;
             background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+            border: none;
+            border-radius: 20px 0 0 20px;
+            box-shadow: -2px 2px 12px rgba(0,0,0,0.15);
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+            font-family: inherit;
+            white-space: nowrap;
+            transform: translateX(0);
+        }
+
+        .side-btn .btn-icon {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            font-size: 18px;
+            flex-shrink: 0;
+            font-size: 15px;
         }
 
-        .side-btn:active { transform: scale(0.92); }
-        .side-btn.active { background: #D4A84B; color: white; }
+        .side-btn .btn-label {
+            font-size: 12px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 0.5px;
+        }
+
+        .side-btn:active { transform: translateX(4px); }
+        .side-btn:hover { transform: translateX(-2px); box-shadow: -4px 2px 18px rgba(0,0,0,0.2); }
+
+        .side-btn.active { background: #D4A84B; }
+        .side-btn.active .btn-label { color: white; }
+
+        .side-btn-weather .btn-icon { background: linear-gradient(135deg, #FF9800, #F44336); color: white; }
+        .side-btn-dress .btn-icon { background: linear-gradient(135deg, #9C27B0, #E91E63); color: white; }
+        .side-btn-pack .btn-icon { background: linear-gradient(135deg, #00BCD4, #4CAF50); color: white; }
+        .side-btn-guide .btn-icon { background: linear-gradient(135deg, #FF5722, #FF9800); color: white; }
+        .side-btn-fit .btn-icon { background: linear-gradient(135deg, #607D8B, #455A64); color: white; }
 
         /* ===== 底部浮动面板 ===== */
         .bottom-panel {
@@ -251,6 +280,7 @@
         .tag-local { background: #D1C4E9; color: #4527A0; }
         .tag-hidden { background: #F5F5F5; color: #616161; }
         .tag-street { background: #FFE0B2; color: #E65100; }
+        .tag-hot { background: #FF1744; color: white; }
 
         .card-desc {
             font-size: 12px;
@@ -714,7 +744,8 @@
         <div class="top-title">柳州 · 景点地图</div>
         <div class="top-subtitle">清明出行 | 广州南 07:25 → 柳州 11:25</div>
         <div class="top-chips" id="filterChips">
-            <div class="chip chip-all active" data-filter="all">全部 45</div>
+            <div class="chip chip-all active" data-filter="all">全部 55</div>
+            <div class="chip chip-xhshot" data-filter="xhshot">🔥小红书热门 10</div>
             <div class="chip chip-luosifen" data-filter="luosifen">螺蛳粉 11</div>
             <div class="chip chip-food" data-filter="food">美食 9</div>
             <div class="chip chip-foodstreet" data-filter="foodstreet">美食街 7</div>
@@ -727,16 +758,27 @@
     </div>
 </div>
 
-<!-- 右侧功能按钮 -->
+<!-- 右侧吸附按钮 -->
 <div class="side-btns">
-    <button class="side-btn" id="btnWeather" title="天气/车票">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/><circle cx="12" cy="12" r="4"/></svg>
+    <button class="side-btn side-btn-weather" id="btnWeather">
+        <div class="btn-icon">&#9748;</div>
+        <span class="btn-label">天气车票</span>
     </button>
-    <button class="side-btn" id="btnGuide" title="攻略">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+    <button class="side-btn side-btn-dress" id="btnDress">
+        <div class="btn-icon">&#128090;</div>
+        <span class="btn-label">穿衣建议</span>
     </button>
-    <button class="side-btn" id="btnFitAll" title="查看全部">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+    <button class="side-btn side-btn-pack" id="btnPack">
+        <div class="btn-icon">&#127890;</div>
+        <span class="btn-label">出行准备</span>
+    </button>
+    <button class="side-btn side-btn-guide" id="btnGuide">
+        <div class="btn-icon">&#128214;</div>
+        <span class="btn-label">攻略参考</span>
+    </button>
+    <button class="side-btn side-btn-fit" id="btnFitAll">
+        <div class="btn-icon">&#128204;</div>
+        <span class="btn-label">全部景点</span>
     </button>
 </div>
 
@@ -817,7 +859,19 @@ const attractions = [
     { id:42, name:"大华干捞粉", lat:24.3248, lng:109.4182, cat:"food", color:"#00897B", loc:"城中区五星步行街", tags:[{t:"美食",c:"tag-food"},{t:"本地",c:"tag-local"}], desc:"五星步行街上的老牌粉店，干捞粉是柳州特色。粉条Q弹配上特制酱料和配菜，是柳州人日常的选择。", tips:"帖主评价有点咸，但很多本地人推荐。就在五星步行街上，顺路打卡。" },
     { id:43, name:"鱼酱泼奇（金鱼巷店）", lat:24.3262, lng:109.4198, cat:"food", color:"#00897B", loc:"城中区金鱼巷", tags:[{t:"美食",c:"tag-food"},{t:"拍照",c:"tag-photo"}], desc:"金鱼巷里的网红创意餐厅，主打泼奇碗、三明治、沙拉等轻食。颜值高分量足，是柳州年轻人喜爱的打卡店。", tips:"经典三明治是招牌，颜值高分量足一份够两个人吃。就在张飞木薯羹旁边巷子直走。" },
     { id:44, name:"乾跃老友粉", lat:24.3252, lng:109.4168, cat:"food", color:"#00897B", loc:"城中区五星步行街附近", tags:[{t:"美食",c:"tag-food"},{t:"本地",c:"tag-local"}], desc:"老友粉是广西特色美食，酸辣鲜香开胃。乾跃是五星街附近的人气粉店，很多人从老友粉入坑柳州美食。", tips:"帖主推荐老友伊面，口感比老友粉更有嚼劲。就在五星街附近，方便打卡。" },
-    { id:45, name:"蒙记老牌豆浆", lat:24.3238, lng:109.4132, cat:"food", color:"#00897B", loc:"城中区", tags:[{t:"美食",c:"tag-food"},{t:"老字号",c:"tag-old"}], desc:"柳州老字号豆浆店，豆浆浓郁醇厚，是本地人早餐首选之一。价格实在味道好，柳州传统早餐的代表。", tips:"早餐时间去最好！豆浆配油条或糯米饭，柳州式早餐的正确打开方式。" }
+    { id:45, name:"蒙记老牌豆浆", lat:24.3238, lng:109.4132, cat:"food", color:"#00897B", loc:"城中区", tags:[{t:"美食",c:"tag-food"},{t:"老字号",c:"tag-old"}], desc:"柳州老字号豆浆店，豆浆浓郁醇厚，是本地人早餐首选之一。价格实在味道好，柳州传统早餐的代表。", tips:"早餐时间去最好！豆浆配油条或糯米饭，柳州式早餐的正确打开方式。" },
+
+    // ===== 小红书热门 · 高德2025状元榜 + 社交平台最火美食 =====
+    { id:46, name:"金弟炒螺蛳粉", lat:24.3175, lng:109.4320, cat:"xhshot", color:"#FF1744", loc:"鱼峰区风情港", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"螺蛳粉",c:"tag-lsf"},{t:"必吃",c:"tag-must"}], desc:"高德2025状元榜第1名！炒螺蛳粉界的顶流。锅气十足，粉裹满酱汁，酸笋和花生脆到上头，微辣就够劲。螺蛳粉的另一种极致吃法。", tips:"风情港夜市必吃TOP1！炒螺蛳粉和煮的完全是两种美食体验，锅气是灵魂。晚上去最有氛围，配冰啤绝了。" },
+    { id:47, name:"点都得蜜汁鸭腿（五星店）", lat:24.3252, lng:109.4180, cat:"xhshot", color:"#FF1744", loc:"城中区五星步行街", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"美食",c:"tag-food"},{t:"必吃",c:"tag-must"}], desc:"高德2025状元榜第2名！蜜汁鸭腿外焦里嫩，甜咸适中，汁水丰富。五星步行街最热卖的小吃之一，排队是常态。", tips:"五星步行街扫街必买！蜜汁鸭腿一口咬下去汁水四溢，甜咸完美平衡。建议下午去，晚了容易卖完！" },
+    { id:48, name:"张飞木薯羹（五星步行街）", lat:24.3460, lng:109.4010, cat:"xhshot", color:"#FF1744", loc:"柳北区胜利路（五星步行街也有分店）", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"美食",c:"tag-food"},{t:"必吃",c:"tag-must"}], desc:"高德2025状元榜第7名！柳州特色甜品代表。木薯羹Q弹不腻，晶莹剔透如水晶，软糯香甜。搭配烧烤绝了，是柳州夜宵的灵魂搭档。", tips:"本地人暗号：「要微辣加花生碎」。Q弹不腻搭配烧烤绝了，人均仅8元。胜利路总店最正宗，五星街也有分店。" },
+    { id:49, name:"曹妹螺蛳粉（柳锌总店）", lat:24.3520, lng:109.4350, cat:"xhshot", color:"#FF1744", loc:"柳北区柳锌", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"螺蛳粉",c:"tag-lsf"},{t:"本地人",c:"tag-local"}], desc:"高德2025状元榜第8名！柳锌片区螺蛳粉扛把子，本地人私藏好店。汤底浓郁醇厚，米粉Q弹入味，配菜丰富新鲜。连锁做得好，品质稳定。", tips:"柳锌总店是本店味道最好的！携程评分5.0满分。本地人从小吃到大的老味道，游客也强烈推荐。" },
+    { id:50, name:"西环肥仔螺蛳粉（总店）", lat:24.3050, lng:109.3830, cat:"xhshot", color:"#FF1744", loc:"柳南区鹅山路九区十六栋2号", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"螺蛳粉",c:"tag-lsf"},{t:"老字号",c:"tag-old"},{t:"必吃",c:"tag-must"}], desc:"经营30多年的螺蛳粉元老！大众点评/小红书排名前3。干捞螺蛳粉是招牌特色，酱汁浓郁香味突出。汤底红油香而不燥，锅烧+炸蛋是经典组合。", tips:"干捞螺蛳粉必点！是柳州为数不多的干捞做法代表店。营业到凌晨4点，深夜嗦粉圣地。配豆奶吃更过瘾！" },
+    { id:51, name:"秋果螺蛳粉（红光店）", lat:24.3130, lng:109.3920, cat:"xhshot", color:"#FF1744", loc:"柳南区红光小区二区17栋", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"螺蛳粉",c:"tag-lsf"},{t:"隐藏",c:"tag-hidden"}], desc:"小红书/本地人私藏推荐！藏在红光小区里的宝藏粉店。离柳州站不远，口感偏硬有嚼劲，汤底鲜辣浓郁，酸笋味道正宗。", tips:"距柳州站很近，下车直奔这家！藏在居民区但味道绝对在线。粉偏硬有嚼劲，喜欢有口感的一定要试。" },
+    { id:52, name:"老牌铁三中螺蛳粉", lat:24.3020, lng:109.3880, cat:"xhshot", color:"#FF1744", loc:"柳南区革新一区6号", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"螺蛳粉",c:"tag-lsf"},{t:"老字号",c:"tag-old"}], desc:"什么值得买/大众点评高赞推荐！革新一区的老字号螺蛳粉，开了几十年。汤底浓郁鲜香，粉条劲道，酸笋够臭够正宗，是真正的老柳州味道。", tips:"什么值得买40h逛吃18家特别推荐！革新一区老店，环境朴素但味道是真的顶。本地老饕的日常选择。" },
+    { id:53, name:"A+臭豆腐", lat:24.3258, lng:109.4190, cat:"xhshot", color:"#FF1744", loc:"城中区五星步行街", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"美食",c:"tag-food"}], desc:"高德2025状元榜第9名！五星步行街上的臭豆腐顶流。外皮酥脆内里嫩滑，蘸上特制辣酱，臭香臭香的，是逛街必备的解馋小吃。", tips:"五星步行街扫街必吃！外酥里嫩，蘸辣酱是灵魂。排队快但人很多，可以和点都得鸭腿一起买。" },
+    { id:54, name:"阿婆豆腐花（公园路店）", lat:24.3190, lng:109.4210, cat:"xhshot", color:"#FF1744", loc:"鱼峰区公园路", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"美食",c:"tag-food"},{t:"老字号",c:"tag-old"}], desc:"高德2025状元榜第10名！5块钱一碗的古法豆腐花嫩到晃脑袋，糖水清甜不齁。配个1.5元的茶叶蛋，柳州本地人吃了几十年的老味道。", tips:"才5块钱！古法豆腐花嫩滑到极致，糖水清甜不齁。来柳州第一顿可以从这里开始，唤醒味蕾。配茶叶蛋更绝。" },
+    { id:55, name:"卢姐炒冰", lat:24.3250, lng:109.4175, cat:"xhshot", color:"#FF1744", loc:"城中区五星步行街", tags:[{t:"🔥小红书热门",c:"tag-hot"},{t:"美食",c:"tag-food"},{t:"必吃",c:"tag-must"}], desc:"小红书柳州美食攻略出现率最高的甜品！现切水果打出来的炒冰，冰沙细腻无渣。芒果+菠萝双拼必点，是吃完螺蛳粉后的解辣神器。", tips:"几乎每篇小红书柳州攻略都有它！芒果+菠萝双拼是标配。吃完螺蛳粉来一杯，解辣+解暑双重享受。" }
 ];
 
 // ===== WGS-84 → GCJ-02 坐标转换（解决国内地图偏移） =====
@@ -1052,6 +1106,10 @@ function showInfo(type) {
         html = getWeatherHTML();
     } else if (type === 'guide') {
         html = getGuideHTML();
+    } else if (type === 'dress') {
+        html = getDressHTML();
+    } else if (type === 'pack') {
+        html = getPackHTML();
     }
     infoBody.innerHTML = html;
     infoOverlay.classList.add('show');
@@ -1067,6 +1125,8 @@ infoOverlay.addEventListener('click', hideInfo);
 document.getElementById('infoHandle').addEventListener('click', hideInfo);
 
 document.getElementById('btnWeather').addEventListener('click', () => showInfo('weather'));
+document.getElementById('btnDress').addEventListener('click', () => showInfo('dress'));
+document.getElementById('btnPack').addEventListener('click', () => showInfo('pack'));
 document.getElementById('btnGuide').addEventListener('click', () => showInfo('guide'));
 document.getElementById('btnFitAll').addEventListener('click', () => {
     map.fitBounds(allBounds, { padding: [60, 40, 160, 40] });
@@ -1260,7 +1320,346 @@ function getGuideHTML() {
     `;
 }
 
-// ===== 底部面板拖拽 =====
+function getDressHTML() {
+    return `
+        <div class="info-section-title">👗 清明柳州穿衣建议</div>
+
+        <div class="weather-card">
+            <div class="weather-warn" style="background:linear-gradient(135deg,#E8EAF6,#C5CAE9);">
+                <div class="weather-warn-icon">🌧️</div>
+                <div class="weather-warn-text" style="color:#283593;">气温 18~25°C｜降雨概率 90%+<br>体感湿润偏凉，昼夜温差明显</div>
+            </div>
+
+            <div style="margin-top:14px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                    <span style="font-size:22px;">☀️</span>
+                    <div>
+                        <div style="font-size:14px;font-weight:700;color:#2c2c2c;">白天（22~25°C）</div>
+                        <div style="font-size:11px;color:#999;">体感温暖，但多云或小雨时偏凉</div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+                    <span style="padding:6px 12px;background:#E3F2FD;border-radius:20px;font-size:12px;font-weight:600;color:#1565C0;">短袖T恤 / 薄衬衫</span>
+                    <span style="padding:6px 12px;background:#E8F5E9;border-radius:20px;font-size:12px;font-weight:600;color:#2E7D32;">棉麻长裤 / 牛仔裤</span>
+                    <span style="padding:6px 12px;background:#FFF3E0;border-radius:20px;font-size:12px;font-weight:600;color:#E65100;">轻薄裙装（非爬山日）</span>
+                </div>
+            </div>
+
+            <div style="margin-top:4px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                    <span style="font-size:22px;">🌙</span>
+                    <div>
+                        <div style="font-size:14px;font-weight:700;color:#2c2c2c;">早晚 / 雨天（18~20°C）</div>
+                        <div style="font-size:11px;color:#999;">下雨时体感明显偏凉，需加外套</div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;">
+                    <span style="padding:6px 12px;background:#F3E5F5;border-radius:20px;font-size:12px;font-weight:600;color:#6A1B9A;">薄风衣 / 冲锋衣（防雨）</span>
+                    <span style="padding:6px 12px;background:#E0F2F1;border-radius:20px;font-size:12px;font-weight:600;color:#00695C;">连帽卫衣 / 薄夹克</span>
+                    <span style="padding:6px 12px;background:#FFF8E1;border-radius:20px;font-size:12px;font-weight:600;color:#F57F17;">长袖打底衫</span>
+                </div>
+            </div>
+
+            <div style="margin-top:4px;">
+                <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px;">
+                    <span style="font-size:22px;">👟</span>
+                    <div>
+                        <div style="font-size:14px;font-weight:700;color:#2c2c2c;">鞋子建议</div>
+                        <div style="font-size:11px;color:#999;">爬山多、雨天多，鞋子选择很重要</div>
+                    </div>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;">
+                    <span style="padding:6px 12px;background:#FFCCBC;border-radius:20px;font-size:12px;font-weight:600;color:#BF360C;">防水运动鞋（首选！）</span>
+                    <span style="padding:6px 12px;background:#D7CCC8;border-radius:20px;font-size:12px;font-weight:600;color:#4E342E;">防滑登山鞋（爬马鞍山/鱼峰山）</span>
+                    <span style="padding:6px 12px;background:#CFD8DC;border-radius:20px;font-size:12px;font-weight:600;color:#37474F;">备一双拖鞋（酒店/夜市）</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title">🎯 穿搭核心原则</div>
+        <div class="weather-card">
+            <div style="display:grid;gap:12px;">
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <span style="font-size:20px;flex-shrink:0;">🧅</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">洋葱式穿搭</div>
+                        <div style="font-size:12px;color:#666;line-height:1.6;">内层吸汗T恤 + 中层薄卫衣 + 外层防雨外套，根据室内外温差灵活增减。</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <span style="font-size:20px;flex-shrink:0;">🌂</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">雨天出行标配</div>
+                        <div style="font-size:12px;color:#666;line-height:1.6;">折叠伞必带！如果爬山建议带轻便雨衣（龙潭公园/马鞍山），双手解放更安全。</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <span style="font-size:20px;flex-shrink:0;">🎒</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">嗦粉友好穿搭</div>
+                        <div style="font-size:12px;color:#666;line-height:1.6;">吃螺蛳粉建议穿深色衣服！汤汁溅到浅色衣服上很难洗掉，这是过来人的血泪教训。</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:flex-start;gap:10px;">
+                    <span style="font-size:20px;flex-shrink:0;">📸</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">拍照出片穿搭</div>
+                        <div style="font-size:12px;color:#666;line-height:1.6;">窑埠古镇可租苗族服拍照。都乐岩溶洞穿浅色衣服最出片。西来古寺红墙配素色衣服很好看。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="weather-card" style="background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-left:3px solid #F57F17;">
+            <div style="font-size:13px;font-weight:700;color:#F57F17;margin-bottom:8px;">⚠️ 特别提醒</div>
+            <div style="font-size:12px;color:#8B6914;line-height:1.7;">
+                · 柳州4月湿度大，衣服不易干，建议多带1-2套换洗衣物<br>
+                · 爬山出汗+淋雨后容易感冒，带一件速干内衣更好<br>
+                · 清明时节蚊虫开始活跃，穿长裤比短裤更实用<br>
+                · 如计划去三江侗寨（3h车程），山区更凉需加厚外套
+            </div>
+        </div>
+    `;
+}
+
+function getPackHTML() {
+    return `
+        <div class="info-section-title">🧳 柳州出行准备清单</div>
+
+        <div class="weather-card" style="background:linear-gradient(135deg,#E8F5E9,#C8E6C9);border-left:3px solid #4CAF50;">
+            <div style="font-size:13px;font-weight:700;color:#2E7D32;margin-bottom:4px;">📋 结合柳州特点定制</div>
+            <div style="font-size:12px;color:#388E3C;line-height:1.6;">以下清单根据柳州的天气（雨季）、美食（螺蛳粉辣&酸）、景点（爬山+溶洞）特点专门定制。</div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">📄 证件 & 支付</div>
+        <div class="weather-card">
+            <div style="display:grid;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E3F2FD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🪪</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">身份证</div>
+                        <div style="font-size:11px;color:#999;">住宿+高铁+景区实名验证必备，建议拍照备份</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E8F5E9;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎫</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">优惠证件</div>
+                        <div style="font-size:11px;color:#999;">学生证/教师证/老年证→部分景区半价（如程阳八寨60元）</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FFF3E0;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">💰</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">现金 + 手机支付</div>
+                        <div style="font-size:11px;color:#999;">柳州小吃摊普遍支持微信/支付宝，但青云市场个别摊位需现金，备200元零钱</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">🌧️ 雨季防护（重要！）</div>
+        <div class="weather-card" style="border-left:3px solid #1565C0;">
+            <div style="display:grid;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E3F2FD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">☂️</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">折叠雨伞（必带！）</div>
+                        <div style="font-size:11px;color:#999;">清明降雨概率90%+，每天出门必带</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E3F2FD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🧥</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">轻便雨衣</div>
+                        <div style="font-size:11px;color:#999;">爬龙潭公园/马鞍山/鱼峰山时用，双手解放更安全</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E3F2FD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">👟</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">防水鞋 / 防滑鞋</div>
+                        <div style="font-size:11px;color:#999;">柳州山多石板路多，雨天湿滑，千万别穿小白鞋</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E3F2FD;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🛡️</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">密封袋 / 防水袋</div>
+                        <div style="font-size:11px;color:#999;">装手机/充电宝，游船夜游柳江时防溅水</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">🍜 嗦粉装备</div>
+        <div class="weather-card" style="border-left:3px solid #D84315;">
+            <div style="display:grid;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FFCCBC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">👕</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">深色衣服多带几件</div>
+                        <div style="font-size:11px;color:#999;">嗦粉汤汁四溅，浅色衣服一顿报废。每天换着吃，每天都要穿深色！</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FFCCBC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🤧</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">纸巾 / 湿巾（大量！）</div>
+                        <div style="font-size:11px;color:#999;">吃螺蛳粉鼻涕眼泪一起来，3天至少带2包抽纸</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FFCCBC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">💊</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">肠胃药（重要！）</div>
+                        <div style="font-size:11px;color:#999;">蒙脱石散/整肠丸/健胃消食片，柳州美食酸辣油腻，肠胃敏感必备</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FFCCBC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🍬</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">口香糖 / 漱口水</div>
+                        <div style="font-size:11px;color:#999;">螺蛳粉+臭豆腐，嘴里的味道你懂的…出门拍照前记得用</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">📱 电子设备</div>
+        <div class="weather-card">
+            <div style="display:grid;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#F3E5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🔋</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">充电宝（≥10000mAh）</div>
+                        <div style="font-size:11px;color:#999;">拍照+导航+扫码支付，一天耗电飞快。柳州没有地铁，全靠手机打车/导航</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#F3E5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">📸</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">手机 + 充电器</div>
+                        <div style="font-size:11px;color:#999;">窑埠古镇夜景、百里柳江灯光秀必拍！建议带自拍杆/小三脚架</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#F3E5F5;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎧</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">耳机</div>
+                        <div style="font-size:11px;color:#999;">高铁4小时车程，降噪耳机让旅途更舒适</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">💊 药品 & 健康</div>
+        <div class="weather-card">
+            <div style="display:grid;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FCE4EC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🤒</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">感冒药</div>
+                        <div style="font-size:11px;color:#999;">清明柳州多雨，淋雨后体感偏凉易着凉</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FCE4EC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🩹</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">创可贴</div>
+                        <div style="font-size:11px;color:#999;">爬山磨脚/划伤用，带5-6片即可</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FCE4EC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🦟</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">驱蚊水 / 防蚊喷雾</div>
+                        <div style="font-size:11px;color:#999;">龙潭公园蚊虫多，攻略里反复提到「一定要带驱蚊水」</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#FCE4EC;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🧴</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">防晒霜</div>
+                        <div style="font-size:11px;color:#999;">虽然多雨，但广西紫外线不弱，阴天也要防晒</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">🎒 日用 & 收纳</div>
+        <div class="weather-card">
+            <div style="display:grid;gap:10px;">
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E0F2F1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🎒</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">轻便双肩包（出门日用）</div>
+                        <div style="font-size:11px;color:#999;">装伞+充电宝+水杯+纸巾，逛景点和夜市都方便</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E0F2F1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🧴</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">洗漱用品（旅行装）</div>
+                        <div style="font-size:11px;color:#999;">牙刷/牙膏/毛巾/洗面奶，酒店一次性的不太好用</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E0F2F1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">👜</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">脏衣袋 / 密封袋</div>
+                        <div style="font-size:11px;color:#999;">湿衣服和脏衣服分开装，行李箱不串味</div>
+                    </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;">
+                    <span style="width:32px;height:32px;background:#E0F2F1;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;">🥤</span>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:#2c2c2c;">保温杯</div>
+                        <div style="font-size:11px;color:#999;">吃完螺蛳粉喝口热水舒服很多，高铁上也能接水</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-section-title" style="font-size:15px;">🧳 行李箱空间预留</div>
+        <div class="weather-card" style="background:linear-gradient(135deg,#FFF8E1,#FFECB3);border-left:3px solid #FF8F00;">
+            <div style="font-size:13px;font-weight:700;color:#E65100;margin-bottom:8px;">🛒 留出空间买特产！</div>
+            <div style="font-size:12px;color:#8B6914;line-height:1.8;">
+                · <b>袋装螺蛳粉</b>：柳州本地买比网上便宜正宗（好欢螺/螺霸王/嘻螺会），可以多买几袋<br>
+                · <b>金桔蜜饯/酸嘢</b>：柳州特色零食，酸甜开胃<br>
+                · <b>三江侗茶</b>：如果去了三江，茶叶质量好价格便宜<br>
+                · <b>每日鲜古早味蛋糕</b>：地王新天地那家，新鲜买了高铁上吃<br>
+                · 建议行李箱留出 <b>1/4 空间</b>，或者带个折叠旅行袋备用
+            </div>
+        </div>
+
+        <div class="weather-card" style="margin-top:12px;">
+            <div style="font-size:13px;font-weight:700;color:#2c2c2c;margin-bottom:10px;">✅ 极简速查清单（出门前对照）</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px;color:#555;">
+                <div>☑️ 身份证</div>
+                <div>☑️ 充电宝+充电器</div>
+                <div>☑️ 折叠雨伞</div>
+                <div>☑️ 轻便雨衣</div>
+                <div>☑️ 防水/防滑鞋</div>
+                <div>☑️ 深色衣服×3+</div>
+                <div>☑️ 薄外套/风衣</div>
+                <div>☑️ 纸巾+湿巾</div>
+                <div>☑️ 肠胃药</div>
+                <div>☑️ 感冒药</div>
+                <div>☑️ 驱蚊水</div>
+                <div>☑️ 创可贴</div>
+                <div>☑️ 防晒霜</div>
+                <div>☑️ 口香糖/漱口水</div>
+                <div>☑️ 保温杯</div>
+                <div>☑️ 密封袋×3</div>
+                <div>☑️ 双肩包</div>
+                <div>☑️ 现金200元</div>
+                <div>☑️ 洗漱用品</div>
+                <div>☑️ 折叠旅行袋</div>
+            </div>
+        </div>
+    `;
+}
 const panel = document.getElementById('bottomPanel');
 let panelHidden = false;
 
