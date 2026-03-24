@@ -85,6 +85,8 @@
         .chip-night { background: rgba(30,136,229,0.85); color: white; }
         .chip-ethnic { background: rgba(142,36,170,0.85); color: white; }
         .chip-food { background: rgba(0,137,123,0.85); color: white; }
+        .chip-luosifen { background: rgba(216,67,21,0.85); color: white; }
+        .chip-foodstreet { background: rgba(255,111,0,0.85); color: white; }
 
         .chip.active { transform: scale(1.05); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
 
@@ -241,6 +243,14 @@
         .tag-culture { background: #F3E5F5; color: #6A1B9A; }
         .tag-nature { background: #E0F2F1; color: #00695C; }
         .tag-photo { background: #FFE0B2; color: #BF360C; }
+        .tag-lsf { background: #FFCCBC; color: #BF360C; }
+        .tag-old { background: #FFF9C4; color: #F57F17; }
+        .tag-must { background: #FFCDD2; color: #C62828; }
+        .tag-cheap { background: #C8E6C9; color: #2E7D32; }
+        .tag-nice { background: #BBDEFB; color: #1565C0; }
+        .tag-local { background: #D1C4E9; color: #4527A0; }
+        .tag-hidden { background: #F5F5F5; color: #616161; }
+        .tag-street { background: #FFE0B2; color: #E65100; }
 
         .card-desc {
             font-size: 12px;
@@ -704,7 +714,9 @@
         <div class="top-title">柳州 · 景点地图</div>
         <div class="top-subtitle">清明出行 | 广州南 07:25 → 柳州 11:25</div>
         <div class="top-chips" id="filterChips">
-            <div class="chip chip-all active" data-filter="all">全部 15</div>
+            <div class="chip chip-all active" data-filter="all">全部 30</div>
+            <div class="chip chip-luosifen" data-filter="luosifen">螺蛳粉 9</div>
+            <div class="chip chip-foodstreet" data-filter="foodstreet">美食街 6</div>
             <div class="chip chip-landmark" data-filter="landmark">地标 3</div>
             <div class="chip chip-nature" data-filter="nature">自然 4</div>
             <div class="chip chip-culture" data-filter="culture">人文 2</div>
@@ -767,7 +779,26 @@ const attractions = [
     { id:12, name:"石门仙湖", lat:25.1600, lng:109.3800, cat:"nature", color:"#FB8C00", loc:"融安县大良镇", tags:[{t:"AAAA",c:"tag-4a"},{t:"自然",c:"tag-nature"}], desc:"天坑溶洞与高峡平湖的完美组合，有天然迎宾石门、地下暗河穿三坑、溶洞钟乳石奇观。可乘船穿越溶洞。", tips:"坐船穿溶洞体验很独特，像进入《西游记》。适合自驾，从柳州开车约2小时。" },
     { id:13, name:"青云菜市", lat:24.3270, lng:109.4150, cat:"food", color:"#00897B", loc:"城中区青云路", tags:[{t:"美食",c:"tag-food"}], desc:"柳州最有烟火气的菜市场，藏着无数本地美食。露水汤圆、糯米饭、各种糕点...体验柳州本地人日常的最佳去处。", tips:"网红早市，得10点前到！露水汤圆必吃。菜市场里美食比外面便宜地道。尝尝柳州酸、糯米饭和豆浆油条。" },
     { id:14, name:"螺蛳粉产业园", lat:24.3800, lng:109.3600, cat:"food", color:"#00897B", loc:"鱼峰区", tags:[{t:"美食",c:"tag-food"},{t:"文化",c:"tag-culture"}], desc:"了解螺蛳粉从街头小吃到百亿产业的传奇。参观生产线、了解非遗酸笋制作工艺，独特的工业研学旅游体验。", tips:"可以看到螺蛳粉全自动化生产线，还能DIY螺蛳粉带走。来柳州怎么能不深入了解螺蛳粉文化呢！" },
-    { id:15, name:"蟠龙山瀑布公园", lat:24.3200, lng:109.4050, cat:"landmark", color:"#E53935", loc:"蟠龙路", tags:[{t:"免费",c:"tag-free"},{t:"夜景",c:"tag-night"},{t:"拍照",c:"tag-photo"}], desc:"亚洲最大人工瀑布之一，落差约30米。夜间灯光映照下瀑布流光溢彩，是百里柳江夜景的重要组成部分。", tips:"一定要晚上去看！灯光+瀑布太梦幻了。站在对面江边拍全景最好看，是百里柳江灯光秀的高潮。" }
+    { id:15, name:"蟠龙山瀑布公园", lat:24.3200, lng:109.4050, cat:"landmark", color:"#E53935", loc:"蟠龙路", tags:[{t:"免费",c:"tag-free"},{t:"夜景",c:"tag-night"},{t:"拍照",c:"tag-photo"}], desc:"亚洲最大人工瀑布之一，落差约30米。夜间灯光映照下瀑布流光溢彩，是百里柳江夜景的重要组成部分。", tips:"一定要晚上去看！灯光+瀑布太梦幻了。站在对面江边拍全景最好看，是百里柳江灯光秀的高潮。" },
+
+    // ===== 螺蛳粉名店 =====
+    { id:16, name:"聚宝螺蛳粉（金鱼巷店）", lat:24.3265, lng:109.4195, cat:"luosifen", color:"#D84315", loc:"城中区金鱼巷53号", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"老字号",c:"tag-old"},{t:"必吃",c:"tag-must"}], desc:"柳州螺蛳粉「鼻祖」之一，开了十几年的老字号。汤头浓郁带药膳味，叉烧大片，酸笋够臭够香。每天饭点必排队。", tips:"必点：油果+猪脚+酸笋+炸蛋（吸饱汤汁超满足）。人均15元。饭点排队长，建议错峰去。红榜TOP店。" },
+    { id:17, name:"黄氏真味螺蛳粉（西环店）", lat:24.3085, lng:109.3855, cat:"luosifen", color:"#D84315", loc:"柳南区西环路二区18栋", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"性价比",c:"tag-cheap"},{t:"必吃",c:"tag-must"}], desc:"本地人超爱的平价粉店，腐竹比脸大是招牌。酸豆角超开胃，汤底够味，环境朴素但味道扛把子。", tips:"人均仅10元！本地人技巧：加一份酸笋不要钱。腐竹比脸大是真的！深藏居民区的宝藏。" },
+    { id:18, name:"新月螺蛳粉", lat:24.3340, lng:109.4155, cat:"luosifen", color:"#D84315", loc:"城中区三中路", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"环境好",c:"tag-nice"}], desc:"区别于环境简陋的小店，新月有空调，环境略显优雅。汤底浓郁，溏心卤蛋是标配加点，是可以舒适嗦粉的螺蛳粉店。", tips:"必加溏心卤蛋！环境干净有空调，带怕脏的朋友来这家最合适。位置好找，在三中路上。" },
+    { id:19, name:"阿嬑螺蛳粉（胜利店）", lat:24.3450, lng:109.4020, cat:"luosifen", color:"#D84315", loc:"柳北区胜利路35-1号", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"必吃",c:"tag-must"}], desc:"酸笋巨臭巨香，这就是螺蛳粉该有的味道。加炸蛋吸满汤汁，配上卤鸭脚和腊肠，是本地人心中的TOP级粉店。", tips:"红榜TOP1！推荐吃法：加豆泡+腊肠+卤鸭脚+炸蛋。人均12元。酸笋够臭才是正宗！" },
+    { id:20, name:"六品坊螺蛳粉", lat:24.3250, lng:109.4170, cat:"luosifen", color:"#D84315", loc:"城中区五星步行街旁", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"老字号",c:"tag-old"}], desc:"30年老牌螺蛳粉店，就在聚宝旁边。味道很香，汤底浓郁，配菜有黄花菜很特别。「神仙三件套」是豪华版快乐。", tips:"30年老店，品质稳定。特辣还好不是很辣。「神仙三件套」必试。和聚宝挨着，可以对比两家。" },
+    { id:21, name:"深巷螺蛳粉（城站铁一总店）", lat:24.3120, lng:109.3980, cat:"luosifen", color:"#D84315", loc:"柳南区城站路", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"本地人",c:"tag-local"}], desc:"藏于深巷却香飘四溢，独特的炒制工艺让螺蛳粉口感丰富。酸辣过瘾，每一口都充满层次感，是本地人私藏的好店。", tips:"名字就叫「深巷」，真的藏在深巷里！导航到了别放弃，巷子里面就是。炒制工艺让味道更有层次。" },
+    { id:22, name:"翠翠家螺蛳粉", lat:24.3160, lng:109.4220, cat:"luosifen", color:"#D84315", loc:"鱼峰区细柳巷41号", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"本地人",c:"tag-local"}], desc:"细柳巷里的老店，小料浸泡在红油里粒粒裹油。食客吃完每一口脸上都写满了满足，是知乎柳州美食高赞推荐。", tips:"细柳巷41号，巷子里的老味道。小料红油拌匀后先吃一口，幸福感爆棚。附近还有很多小吃可以一起逛。" },
+    { id:23, name:"罗忆螺蛳粉", lat:24.3300, lng:109.4230, cat:"luosifen", color:"#D84315", loc:"城中区三中路159-6号", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"本地人",c:"tag-local"}], desc:"三中路上的本地人常吃店，口碑稳定味道正宗。汤底鲜香浓郁，酸笋和配菜给得足，价格实在。", tips:"三中路上本地人常吃的店，不容易踩雷。路过正好吃一碗，分量足价格实在。" },
+    { id:24, name:"梁婶螺蛳粉", lat:24.3080, lng:109.3950, cat:"luosifen", color:"#D84315", loc:"柳南区城站路南七巷", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"隐藏",c:"tag-hidden"}], desc:"从红光桥往城站路方向走进南七巷约300米，藏在居民区深处的宝藏店。本地老饕才知道的秘密据点，味道极正宗。", tips:"真正的隐藏款！导航南七巷，从红光桥下桥后右转进入，行驶至中段右手边。不是本地人根本找不到。" },
+
+    // ===== 美食街区 =====
+    { id:25, name:"五星商业步行街", lat:24.3255, lng:109.4175, cat:"foodstreet", color:"#FF6F00", loc:"城中区五星路", tags:[{t:"美食街",c:"tag-street"},{t:"夜市",c:"tag-night"},{t:"必去",c:"tag-must"}], desc:"柳州最热闹的美食步行街，夜市文化代表。聚宝、六品坊等螺蛳粉名店都在这里，海鲜烧烤小吃冷饮应有尽有，越夜越精彩。", tips:"晚上去最好！螺蛳粉+烧烤+炒冰一条龙。住附近最方便。卢姐炒冰、大华干捞粉都在这片。消费实惠，人均20-30就吃撑。" },
+    { id:26, name:"青云美食街", lat:24.3045, lng:109.3940, cat:"foodstreet", color:"#FF6F00", loc:"柳南区青云路", tags:[{t:"美食街",c:"tag-street"},{t:"早市",c:"tag-food"},{t:"本地",c:"tag-local"}], desc:"柳州最有烟火气的美食聚集地，也是著名的网红早市。众多知名螺蛳粉店、臭豆腐、鸭脚煲等小吃汇集，本地人日常吃饭的地方。", tips:"早市10点前必到！露水汤圆、糯米饭是早餐标配。晚上也有夜宵摊。青云菜市就在旁边，逛完市场吃美食。" },
+    { id:27, name:"谷埠街美食城", lat:24.3140, lng:109.4280, cat:"foodstreet", color:"#FF6F00", loc:"鱼峰区飞鹅二路1号", tags:[{t:"美食街",c:"tag-street"},{t:"全天",c:"tag-food"}], desc:"从早吃到晚的美食天堂！集合了各种老牌小吃和新派美食，两栋圆圈楼中间就是夜市。柳州最大的美食综合体之一。", tips:"可以从早吃到晚的神奇地方。老牌小吃+新派美食都有，选择困难症慎入。飞鹅路和鱼峰路交汇处，交通方便。" },
+    { id:28, name:"胜利路烧烤城", lat:24.3460, lng:109.4015, cat:"foodstreet", color:"#FF6F00", loc:"柳北区胜利路", tags:[{t:"美食街",c:"tag-street"},{t:"烧烤",c:"tag-food"},{t:"夜宵",c:"tag-night"}], desc:"柳州最出名的烧烤一条街，入夜后烟火气十足。烧烤、螺蛳粉、木薯羹...搭配冰啤酒就是柳州夜生活的完美打开方式。", tips:"张飞木薯羹在这！Q弹不腻搭配烧烤绝了。本地人暗号：「要微辣加花生碎」。人均8元。夏天晚上来最有感觉。" },
+    { id:29, name:"箭盘山宵夜街", lat:24.3050, lng:109.4320, cat:"foodstreet", color:"#FF6F00", loc:"鱼峰区箭盘路", tags:[{t:"美食街",c:"tag-street"},{t:"宵夜",c:"tag-night"}], desc:"出了名的潮汕粥、狗肉、烧烤一条街。深夜食堂聚集地，是柳州人吃宵夜的老牌去处，凌晨依然热闹。", tips:"潮汕砂锅粥必试！新快捷鸭脚螺蛳粉煲也是招牌。适合深夜觅食，凌晨都有得吃。" },
+    { id:30, name:"水南路美食街", lat:24.3180, lng:109.4100, cat:"foodstreet", color:"#FF6F00", loc:"城中区水南路", tags:[{t:"美食街",c:"tag-street"},{t:"本地",c:"tag-local"}], desc:"藏在城中区的本地人美食街，没有游客扎堆但好吃的店铺密集。各种粉店、糖水铺、卤味摊，是最接地气的柳州味道。", tips:"游客少本地人多，价格比五星步行街更实惠。随便走进一家粉店都不太会踩雷，这就是柳州的底气。" }
 ];
 
 // ===== 地图初始化 =====
