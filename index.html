@@ -714,15 +714,15 @@
         <div class="top-title">柳州 · 景点地图</div>
         <div class="top-subtitle">清明出行 | 广州南 07:25 → 柳州 11:25</div>
         <div class="top-chips" id="filterChips">
-            <div class="chip chip-all active" data-filter="all">全部 30</div>
-            <div class="chip chip-luosifen" data-filter="luosifen">螺蛳粉 9</div>
-            <div class="chip chip-foodstreet" data-filter="foodstreet">美食街 6</div>
-            <div class="chip chip-landmark" data-filter="landmark">地标 3</div>
-            <div class="chip chip-nature" data-filter="nature">自然 4</div>
-            <div class="chip chip-culture" data-filter="culture">人文 2</div>
+            <div class="chip chip-all active" data-filter="all">全部 45</div>
+            <div class="chip chip-luosifen" data-filter="luosifen">螺蛳粉 11</div>
+            <div class="chip chip-food" data-filter="food">美食 9</div>
+            <div class="chip chip-foodstreet" data-filter="foodstreet">美食街 7</div>
+            <div class="chip chip-culture" data-filter="culture">人文 5</div>
+            <div class="chip chip-landmark" data-filter="landmark">地标 4</div>
+            <div class="chip chip-nature" data-filter="nature">自然 5</div>
             <div class="chip chip-night" data-filter="night">夜景 2</div>
             <div class="chip chip-ethnic" data-filter="ethnic">民族 2</div>
-            <div class="chip chip-food" data-filter="food">美食 2</div>
         </div>
     </div>
 </div>
@@ -798,18 +798,88 @@ const attractions = [
     { id:27, name:"谷埠街美食城", lat:24.3140, lng:109.4280, cat:"foodstreet", color:"#FF6F00", loc:"鱼峰区飞鹅二路1号", tags:[{t:"美食街",c:"tag-street"},{t:"全天",c:"tag-food"}], desc:"从早吃到晚的美食天堂！集合了各种老牌小吃和新派美食，两栋圆圈楼中间就是夜市。柳州最大的美食综合体之一。", tips:"可以从早吃到晚的神奇地方。老牌小吃+新派美食都有，选择困难症慎入。飞鹅路和鱼峰路交汇处，交通方便。" },
     { id:28, name:"胜利路烧烤城", lat:24.3460, lng:109.4015, cat:"foodstreet", color:"#FF6F00", loc:"柳北区胜利路", tags:[{t:"美食街",c:"tag-street"},{t:"烧烤",c:"tag-food"},{t:"夜宵",c:"tag-night"}], desc:"柳州最出名的烧烤一条街，入夜后烟火气十足。烧烤、螺蛳粉、木薯羹...搭配冰啤酒就是柳州夜生活的完美打开方式。", tips:"张飞木薯羹在这！Q弹不腻搭配烧烤绝了。本地人暗号：「要微辣加花生碎」。人均8元。夏天晚上来最有感觉。" },
     { id:29, name:"箭盘山宵夜街", lat:24.3050, lng:109.4320, cat:"foodstreet", color:"#FF6F00", loc:"鱼峰区箭盘路", tags:[{t:"美食街",c:"tag-street"},{t:"宵夜",c:"tag-night"}], desc:"出了名的潮汕粥、狗肉、烧烤一条街。深夜食堂聚集地，是柳州人吃宵夜的老牌去处，凌晨依然热闹。", tips:"潮汕砂锅粥必试！新快捷鸭脚螺蛳粉煲也是招牌。适合深夜觅食，凌晨都有得吃。" },
-    { id:30, name:"水南路美食街", lat:24.3180, lng:109.4100, cat:"foodstreet", color:"#FF6F00", loc:"城中区水南路", tags:[{t:"美食街",c:"tag-street"},{t:"本地",c:"tag-local"}], desc:"藏在城中区的本地人美食街，没有游客扎堆但好吃的店铺密集。各种粉店、糖水铺、卤味摊，是最接地气的柳州味道。", tips:"游客少本地人多，价格比五星步行街更实惠。随便走进一家粉店都不太会踩雷，这就是柳州的底气。" }
+    { id:30, name:"水南路美食街", lat:24.3180, lng:109.4100, cat:"foodstreet", color:"#FF6F00", loc:"城中区水南路", tags:[{t:"美食街",c:"tag-street"},{t:"本地",c:"tag-local"}], desc:"藏在城中区的本地人美食街，没有游客扎堆但好吃的店铺密集。各种粉店、糖水铺、卤味摊，是最接地气的柳州味道。", tips:"游客少本地人多，价格比五星步行街更实惠。随便走进一家粉店都不太会踩雷，这就是柳州的底气。" },
+
+    // ===== 小红书攻略新增 · 景点 =====
+    { id:31, name:"西来古寺", lat:24.3192, lng:109.4225, cat:"culture", color:"#43A047", loc:"城中区曙光东路", tags:[{t:"免费",c:"tag-free"},{t:"文化",c:"tag-culture"},{t:"拍照",c:"tag-photo"}], desc:"柳州市区内的千年古刹，创建年代悠久，地处市区中心。红墙黄瓦的建筑风格很有特色，是柳州佛门弟子和信教群众的重要活动场所。", tips:"来来居咖啡馆就在旁边，柳州大字红墙超出片！寺庙不大但很有韵味，适合安静打卡。" },
+    { id:32, name:"柳州博物馆", lat:24.3332, lng:109.4168, cat:"culture", color:"#43A047", loc:"城中区解放北路37号", tags:[{t:"免费",c:"tag-free"},{t:"文化",c:"tag-culture"}], desc:"柳州市综合性博物馆，展示柳州从古至今的历史文化。室内可避暑，了解柳州城市发展脉络的好去处。", tips:"夏天避暑首选！展厅内容丰富，可以了解柳江人和柳州工业史。建议安排1-2小时参观。" },
+    { id:33, name:"柳州文庙", lat:24.3315, lng:109.4085, cat:"culture", color:"#43A047", loc:"城中区文惠路", tags:[{t:"文化",c:"tag-culture"},{t:"拍照",c:"tag-photo"}], desc:"类似故宫风格的柳州孔庙，建筑气势恢宏。是柳州重要的文化地标，适合拍照打卡，中式建筑爱好者不可错过。", tips:"16:00就停止入内了，注意时间规划！故宫风建筑适合拍汉服照，下午光线好。" },
+    { id:34, name:"柳州动物园", lat:24.2785, lng:109.3755, cat:"nature", color:"#FB8C00", loc:"柳南区航银路89号", tags:[{t:"自然",c:"tag-nature"}], desc:"柳州市综合性动物园，园区内动物种类丰富，有各种互动体验区。适合亲子游和休闲放松。", tips:"票价不贵，适合带小朋友去。园区不算太大，半天就能逛完。" },
+    { id:35, name:"地王新天地", lat:24.3418, lng:109.4105, cat:"landmark", color:"#E53935", loc:"柳北区广场路10号", tags:[{t:"拍照",c:"tag-photo"},{t:"美食",c:"tag-food"}], desc:"地王国际财富中心303米高，曾是广西第一高楼。地王新天地是其裙楼商业综合体，集购物、美食、娱乐于一体，有每日鲜古早味蛋糕、阿嚒手作等网红店。", tips:"地下层有很多好吃的！每日鲜古早味蛋糕、阿嚒手作、嫣然苡茉蛋挞都在这里。逛累了可以来休息。" },
+    { id:36, name:"风情港夜市", lat:24.3168, lng:109.4315, cat:"foodstreet", color:"#FF6F00", loc:"鱼峰区柳江边", tags:[{t:"美食街",c:"tag-street"},{t:"夜市",c:"tag-night"}], desc:"柳江边的夜市美食聚集地，各种烧烤、小吃、冷饮应有尽有。夜晚江风吹拂，边吃边看江景，是柳州夜生活的热门去处。", tips:"晚上去最有氛围！和窑埠古镇相近，可以先逛古镇再来这里吃宵夜。金弟炒螺蛳粉值得一试。" },
+
+    // ===== 小红书攻略新增 · 美食店 =====
+    { id:37, name:"娇姐老牌螺蛳粉（雅儒路店）", lat:24.3228, lng:109.4062, cat:"luosifen", color:"#D84315", loc:"城中区雅儒路", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"必吃",c:"tag-must"}], desc:"柳州螺蛳粉中最辣的一家！老牌网红店，辣度和味道都很有冲击力。汤底浓郁鲜香，酸笋给得足，嗜辣爱好者的天堂。", tips:"应该是柳州螺蛳粉中最辣的一家了！好吃！就在天山牛杂附近。节假日很火爆难排队。" },
+    { id:38, name:"天山牛杂城（天山总店）", lat:24.3148, lng:109.4275, cat:"food", color:"#00897B", loc:"鱼峰区天山路（近谷埠街）", tags:[{t:"美食",c:"tag-food"},{t:"必吃",c:"tag-must"}], desc:"柳州牛杂代表店，凉拌牛杂酸甜辣爽，牛杂新鲜脆嫩。还有酸辣牛血汤、干锅牛杂等招牌菜。柳州本地人心中的牛杂天花板。", tips:"必吃火锅类！凉拌牛杂有争议（帖主避雷），建议改吃新实惠的沙茶酱牛杂火锅。" },
+    { id:39, name:"阿历螺蛳粉", lat:24.3242, lng:109.4178, cat:"luosifen", color:"#D84315", loc:"城中区五星街附近", tags:[{t:"螺蛳粉",c:"tag-lsf"},{t:"本地人",c:"tag-local"}], desc:"柳州本地人常去的螺蛳粉店，味道正宗汤底鲜香。环境不算豪华但味道绝对在线，是老柳州人的私藏好店。", tips:"帖主Day2晚上吃的，味道不错。附近还有很多小吃，可以搭配一起吃。" },
+    { id:40, name:"柳喜辣烧烤酒局（跃进总店）", lat:24.3258, lng:109.4298, cat:"food", color:"#00897B", loc:"鱼峰区跃进路", tags:[{t:"美食",c:"tag-food"},{t:"烧烤",c:"tag-food"}], desc:"柳州新派烧烤代表，炒螺蛳粉有锅气，招牌鱼子生牛好吃。螺蛳炒鸭脚够味，烧烤有孜然辣椒两种口味，北方人也爱吃。", tips:"炒螺蛳粉必点！招牌鱼子生牛也好吃。有别于传统路边烧烤，环境更好些。" },
+    { id:41, name:"新实惠牛肉牛杂火锅", lat:24.3188, lng:109.4248, cat:"food", color:"#00897B", loc:"鱼峰区柳江边", tags:[{t:"美食",c:"tag-food"},{t:"必吃",c:"tag-must"}], desc:"柳州牛杂火锅人气店，配沙茶酱超好吃！牛杂新鲜量足，汤底鲜美。帖主强烈推荐，比凉拌牛杂好吃太多。", tips:"配沙茶酱好吃到飞起！牛杂必吃火锅类，凉拌一生黑。帖主二刷了煲珠公。" },
+    { id:42, name:"大华干捞粉", lat:24.3248, lng:109.4182, cat:"food", color:"#00897B", loc:"城中区五星步行街", tags:[{t:"美食",c:"tag-food"},{t:"本地",c:"tag-local"}], desc:"五星步行街上的老牌粉店，干捞粉是柳州特色。粉条Q弹配上特制酱料和配菜，是柳州人日常的选择。", tips:"帖主评价有点咸，但很多本地人推荐。就在五星步行街上，顺路打卡。" },
+    { id:43, name:"鱼酱泼奇（金鱼巷店）", lat:24.3262, lng:109.4198, cat:"food", color:"#00897B", loc:"城中区金鱼巷", tags:[{t:"美食",c:"tag-food"},{t:"拍照",c:"tag-photo"}], desc:"金鱼巷里的网红创意餐厅，主打泼奇碗、三明治、沙拉等轻食。颜值高分量足，是柳州年轻人喜爱的打卡店。", tips:"经典三明治是招牌，颜值高分量足一份够两个人吃。就在张飞木薯羹旁边巷子直走。" },
+    { id:44, name:"乾跃老友粉", lat:24.3252, lng:109.4168, cat:"food", color:"#00897B", loc:"城中区五星步行街附近", tags:[{t:"美食",c:"tag-food"},{t:"本地",c:"tag-local"}], desc:"老友粉是广西特色美食，酸辣鲜香开胃。乾跃是五星街附近的人气粉店，很多人从老友粉入坑柳州美食。", tips:"帖主推荐老友伊面，口感比老友粉更有嚼劲。就在五星街附近，方便打卡。" },
+    { id:45, name:"蒙记老牌豆浆", lat:24.3238, lng:109.4132, cat:"food", color:"#00897B", loc:"城中区", tags:[{t:"美食",c:"tag-food"},{t:"老字号",c:"tag-old"}], desc:"柳州老字号豆浆店，豆浆浓郁醇厚，是本地人早餐首选之一。价格实在味道好，柳州传统早餐的代表。", tips:"早餐时间去最好！豆浆配油条或糯米饭，柳州式早餐的正确打开方式。" }
 ];
 
+// ===== WGS-84 → GCJ-02 坐标转换（解决国内地图偏移） =====
+const GCJ02 = (() => {
+    const PI = Math.PI;
+    const a = 6378245.0; // 长半轴
+    const ee = 0.00669342162296594323; // 偏心率平方
+
+    function outOfChina(lng, lat) {
+        return (lng < 72.004 || lng > 137.8347 || lat < 0.8293 || lat > 55.8271);
+    }
+
+    function transformLat(x, y) {
+        let ret = -100.0 + 2.0 * x + 3.0 * y + 0.2 * y * y + 0.1 * x * y + 0.2 * Math.sqrt(Math.abs(x));
+        ret += (20.0 * Math.sin(6.0 * x * PI) + 20.0 * Math.sin(2.0 * x * PI)) * 2.0 / 3.0;
+        ret += (20.0 * Math.sin(y * PI) + 40.0 * Math.sin(y / 3.0 * PI)) * 2.0 / 3.0;
+        ret += (160.0 * Math.sin(y / 12.0 * PI) + 320 * Math.sin(y * PI / 30.0)) * 2.0 / 3.0;
+        return ret;
+    }
+
+    function transformLng(x, y) {
+        let ret = 300.0 + x + 2.0 * y + 0.1 * x * x + 0.1 * x * y + 0.1 * Math.sqrt(Math.abs(x));
+        ret += (20.0 * Math.sin(6.0 * x * PI) + 20.0 * Math.sin(2.0 * x * PI)) * 2.0 / 3.0;
+        ret += (20.0 * Math.sin(x * PI) + 40.0 * Math.sin(x / 3.0 * PI)) * 2.0 / 3.0;
+        ret += (150.0 * Math.sin(x / 12.0 * PI) + 300.0 * Math.sin(x / 30.0 * PI)) * 2.0 / 3.0;
+        return ret;
+    }
+
+    // WGS-84 → GCJ-02
+    function wgs84ToGcj02(lng, lat) {
+        if (outOfChina(lng, lat)) return [lng, lat];
+        let dLat = transformLat(lng - 105.0, lat - 35.0);
+        let dLng = transformLng(lng - 105.0, lat - 35.0);
+        const radLat = lat / 180.0 * PI;
+        let magic = Math.sin(radLat);
+        magic = 1 - ee * magic * magic;
+        const sqrtMagic = Math.sqrt(magic);
+        dLat = (dLat * 180.0) / ((a * (1 - ee)) / (magic * sqrtMagic) * PI);
+        dLng = (dLng * 180.0) / (a / sqrtMagic * Math.cos(radLat) * PI);
+        return [lng + dLng, lat + dLat];
+    }
+
+    return { wgs84ToGcj02 };
+})();
+
+// 坐标转换辅助函数
+// 原始坐标数据已经是 GCJ-02（从高德/国内地图获取），无需再次转换
+// 保留 toGCJ02 函数接口不变，但直接返回原始坐标
+function toGCJ02(lat, lng) {
+    return [lat, lng];
+}
+
 // ===== 地图初始化 =====
+const centerGCJ = toGCJ02(24.33, 109.42);
 const map = L.map('map', {
-    center: [24.33, 109.42],
+    center: centerGCJ,
     zoom: 12,
     zoomControl: true,
     attributionControl: true
 });
 
-// 使用高德瓦片（国内可靠访问）
+// 使用高德瓦片（国内可靠访问，GCJ-02 坐标系）
 L.tileLayer('https://webrd0{s}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}', {
     subdomains: ['1','2','3','4'],
     maxZoom: 18,
@@ -842,13 +912,14 @@ const markerLayer = L.layerGroup().addTo(map);
 
 attractions.forEach(a => {
     const icon = createIcon(a.color, a.id);
-    const marker = L.marker([a.lat, a.lng], { icon }).addTo(markerLayer);
+    const gcjPos = toGCJ02(a.lat, a.lng);
+    const marker = L.marker(gcjPos, { icon }).addTo(markerLayer);
     marker.bindPopup(`<div class="popup-title">${a.name}</div><div class="popup-loc">${a.loc}</div>`, { maxWidth: 220, closeButton: false });
     marker.on('click', () => selectAttraction(a.id));
     markers[a.id] = { marker, data: a };
 });
 
-const allBounds = L.latLngBounds(attractions.map(a => [a.lat, a.lng]));
+const allBounds = L.latLngBounds(attractions.map(a => toGCJ02(a.lat, a.lng)));
 map.fitBounds(allBounds, { padding: [60, 40, 160, 40] });
 
 // ===== 底部景点卡片 =====
@@ -900,8 +971,9 @@ function selectAttraction(id) {
     }
     markers[id].marker.setIcon(createActiveIcon(a.color, a.id));
 
-    // 飞到位置
-    map.flyTo([a.lat, a.lng], a.lat > 25 ? 11 : 14, { duration: 0.8 });
+    // 飞到位置（使用 GCJ-02 转换后的坐标）
+    const gcjTarget = toGCJ02(a.lat, a.lng);
+    map.flyTo(gcjTarget, a.lat > 25 ? 11 : 14, { duration: 0.8 });
     markers[id].marker.openPopup();
 
     // 打开详情
@@ -954,7 +1026,8 @@ document.getElementById('filterChips').addEventListener('click', (e) => {
     
     filtered.forEach(a => {
         const icon = createIcon(a.color, a.id);
-        const marker = L.marker([a.lat, a.lng], { icon }).addTo(markerLayer);
+        const gcjPos = toGCJ02(a.lat, a.lng);
+        const marker = L.marker(gcjPos, { icon }).addTo(markerLayer);
         marker.bindPopup(`<div class="popup-title">${a.name}</div><div class="popup-loc">${a.loc}</div>`, { maxWidth: 220, closeButton: false });
         marker.on('click', () => selectAttraction(a.id));
         markers[a.id] = { marker, data: a };
@@ -963,7 +1036,7 @@ document.getElementById('filterChips').addEventListener('click', (e) => {
     renderCards(filtered);
 
     if (filtered.length > 0) {
-        const bounds = L.latLngBounds(filtered.map(a => [a.lat, a.lng]));
+        const bounds = L.latLngBounds(filtered.map(a => toGCJ02(a.lat, a.lng)));
         map.fitBounds(bounds, { padding: [60, 40, 160, 40] });
     }
 });
@@ -1143,6 +1216,46 @@ function getGuideHTML() {
                 <p style="color:#999;font-size:11px;margin-top:6px;padding:8px;background:#f5f5f5;border-radius:8px;">该帖子为18张图文形式，美食详细列表嵌在图片中，因小红书动态加载限制无法自动提取。建议直接在小红书APP中搜索 <b style="color:#FF4757;">"美少女壮士 柳州"</b> 查看完整图文内容。</p>
             </div>
             <div class="xhs-tags">#周末去哪儿 #值得为吃而去的小城 #柳州本地人推荐 #柳州特色美食 #阿靖螺蛳粉</div>
+        </div>
+
+        <div class="xhs-card">
+            <div class="xhs-header">
+                <div class="xhs-avatar" style="background:#FF9800;">梨</div>
+                <div>
+                    <div class="xhs-author">梨梨超爱吃</div>
+                    <div class="xhs-date">09-28 发布</div>
+                </div>
+            </div>
+            <div class="xhs-title">国庆可冲！大馋丫头在柳州的48h</div>
+            <div class="xhs-body">
+                <p>柳州太太太好吃了！！！！分享本大馋丫头在柳州的48h（不踩雷纯吃攻略🤤）！！</p>
+                <p>跟着<b>高德扫街榜</b>在柳州大吃特吃18顿！！！每顿都没踩雷！我爱柳州！！！</p>
+                <p style="color:#999;font-size:11px;margin-top:6px;padding:8px;background:#f5f5f5;border-radius:8px;">该帖子详细美食清单嵌在图片中。建议在小红书APP中搜索 <b style="color:#FF4757;">"梨梨超爱吃 柳州48h"</b> 查看完整图文。</p>
+            </div>
+            <div class="xhs-tags">#柳州 #柳州美食 #螺蛳粉 #高德扫街榜 #国庆 #柳州探店</div>
+        </div>
+
+        <div class="xhs-card">
+            <div class="xhs-header">
+                <div class="xhs-avatar" style="background:#9C27B0;">湘</div>
+                <div>
+                    <div class="xhs-author">王湘</div>
+                    <div class="xhs-date">10-23 发布</div>
+                </div>
+            </div>
+            <div class="xhs-title">三天三晚柳州保姆级路线规划</div>
+            <div class="xhs-body">
+                <p><b>【住宿建议】</b>第一晚住五星街附近，后两晚改住柳州站附近，出行租电动车即可。</p>
+                <p><b>【Day 1】</b>五星步行街 → 音乐喷泉(20:00/21:00两场) → 风情港夜市</p>
+                <p>美食：大华干捞粉、卢姐炒冰、金弟炒螺蛳粉</p>
+                <p><b>【Day 2】</b>青云市场(早餐) → 西来古寺 → 柳州博物馆(避暑) → 地王新天地 → 柳侯公园</p>
+                <p>美食：张记玉米汁、老黎米粉、卓合记猪肉脯、天山牛杂、娇姐螺蛳粉(最辣！)、每日鲜古早味蛋糕、阿嚒手作</p>
+                <p><b>【Day 3】</b>马鞍山公园 → 柳州工业博物馆 → 柳州文庙(16:00停止入内) → 蟠龙山公园(日落) → 窑埠古镇(夜景)</p>
+                <p>美食：新实惠牛肉牛杂火锅(配沙茶酱！)、蒙记老牌豆浆、柳喜辣烧烤、阿历螺蛳粉</p>
+                <p><b>【Day 4】</b>柳州动物园 → 五星街小吃：张飞木薯羹、鱼酱泼奇、点都得蜜汁鸭腿、富贵糯米糍</p>
+                <p><b>【口味提醒】</b>柳州食物以<b>甜、酸、油</b>为主，湖南胃可能觉得不够辣。</p>
+            </div>
+            <div class="xhs-tags">#柳州旅游 #柳州美食 #柳州攻略 #三天三晚 #保姆级攻略</div>
         </div>
     `;
 }
