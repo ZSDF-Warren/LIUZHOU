@@ -1,0 +1,404 @@
+12:02:53 [CONFIG] Mode: FULL (55 locations)
+12:02:53 [CONFIG] CDP: http://127.0.0.1:9222
+12:02:53 [CONFIG] Log: C:\Users\warwickchen\WorkBuddy\20260323111044\amap_fav.log
+12:02:54 [OK] Connected to browser via CDP
+12:02:54 [OK] Using existing page: https://ditu.amap.com/search?query=%E7%AB%8B%E9%B1%BC%E5%B3%B0%E9%A3%8E%E6%99%AF%E5%8C%BA&city=450203&geoobj=109.40666%7C24.29908%7C109.413533%7C24.303091&zoom=17.5
+12:02:56 [OK] Initial screenshot saved
+12:02:56 =======================================================
+12:02:56   Please login in the browser window (scan QR code)
+12:02:56   Auto-detecting login status every 3 seconds...
+12:02:56   Timeout: 5 minutes
+12:02:56 =======================================================
+12:02:56   [OK] Login detected! (method: avatar)
+12:02:59 [START] Adding 55 locations to favorites...
+12:02:59 [1/55] 百里柳江 (柳州市中心城区)
+12:03:00   Typed (force click): 百里柳江 柳州
+12:03:00   Search submitted, waiting for results...
+12:03:04   Clicked result (JS match: '百里柳江')
+12:03:06   Clicked fav (JS)
+12:03:07   [OK] Favorited!
+12:03:09 [2/55] 龙潭公园 (鱼峰区龙潭路43号)
+12:03:10   Typed (force click): 龙潭公园 柳州
+12:03:10   Search submitted, waiting for results...
+12:03:14   Clicked result (JS match: '龙潭公园')
+12:03:16   Clicked fav (JS)
+12:03:17   [OK] Favorited!
+12:03:19 [3/55] 立鱼峰 (鱼峰区鱼峰路)
+12:03:20   Typed (force click): 立鱼峰 柳州
+12:03:20   Search submitted, waiting for results...
+12:03:24   Clicked result (JS match: '立鱼峰')
+12:03:26   Clicked fav (JS)
+12:03:27   [OK] Favorited!
+12:03:29 [4/55] 马鞍山公园 (柳江南岸市中心)
+12:03:30   Typed (force click): 马鞍山公园 柳州
+12:03:30   Search submitted, waiting for results...
+12:03:33   Clicked result (JS match: '马鞍山公园')
+12:03:36   Clicked fav (JS)
+12:03:37   [OK] Favorited!
+12:03:39 [5/55] 柳侯公园 (城中区文惠路60号)
+12:03:40   Typed (force click): 柳侯公园 柳州
+12:03:40   Search submitted, waiting for results...
+12:03:43   Clicked result (JS match: '柳侯公园')
+12:03:46   Clicked fav (JS)
+12:03:47   [OK] Favorited!
+12:03:49 [6/55] 窑埠古镇 (柳江河畔)
+12:03:50   Typed (force click): 窑埠古镇 柳州
+12:03:50   Search submitted, waiting for results...
+12:03:53   Clicked result (JS match: '窑埠古镇')
+12:03:56   Clicked fav (JS)
+12:03:57   [OK] Favorited!
+12:03:59 [7/55] 柳州工业博物馆 (鱼峰区柳东路)
+12:04:00   Typed (force click): 柳州工业博物馆 柳州
+12:04:00   Search submitted, waiting for results...
+12:04:03   Clicked result (JS match: '柳州工业博物馆')
+12:04:06   Clicked fav (JS)
+12:04:07   [OK] Favorited!
+12:04:09 [8/55] 程阳八寨 (三江侗族自治县)
+12:04:10   Typed (force click): 程阳八寨 柳州
+12:04:10   Search submitted, waiting for results...
+12:04:13   Clicked result (JS match: '程阳八寨')
+12:04:16   Clicked fav (JS)
+12:04:17   [OK] Favorited!
+12:04:19 [9/55] 三江鼓楼 (三江侗族自治县)
+12:04:20   Typed (force click): 三江鼓楼 柳州
+12:04:20   Search submitted, waiting for results...
+12:04:23   Clicked result (JS match: '三江鼓楼')
+12:04:26   Clicked fav (JS)
+12:04:27   [OK] Favorited!
+12:04:29 [10/55] 都乐岩风景区 (柳州市南12公里)
+12:04:30   Typed (force click): 都乐岩风景区 柳州
+12:04:30   Search submitted, waiting for results...
+12:04:33   Clicked result (JS match: '都乐岩风景区')
+12:04:36   Clicked fav (JS)
+12:04:37   [OK] Favorited!
+12:04:39 [11/55] 香桥岩溶地质公园 (鹿寨县中渡镇)
+12:04:40   Typed (force click): 香桥岩溶地质公园 柳州
+12:04:40   Search submitted, waiting for results...
+12:04:43   Clicked result (JS match: '香桥岩溶地质公园')
+12:04:46   Clicked fav (JS)
+12:04:47   [OK] Favorited!
+12:04:49 [12/55] 石门仙湖 (融安县大良镇)
+12:04:50   Typed (force click): 石门仙湖 柳州
+12:04:50   Search submitted, waiting for results...
+12:04:53   Clicked result (JS match: '石门仙湖')
+12:04:56   Clicked fav (JS)
+12:04:57   [OK] Favorited!
+12:04:59 [13/55] 青云菜市 (城中区青云路)
+12:05:00   Typed (force click): 青云菜市 柳州
+12:05:00   Search submitted, waiting for results...
+12:05:03   Clicked result (JS match: '青云菜市')
+12:05:05   Clicked fav (JS)
+12:05:07   [OK] Favorited!
+12:05:09 [14/55] 螺蛳粉产业园 (鱼峰区)
+12:05:10   Typed (force click): 螺蛳粉产业园 柳州
+12:05:10   Search submitted, waiting for results...
+12:05:13   Clicked result (JS match: '螺蛳粉产业园')
+12:05:15   Clicked fav (JS)
+12:05:17   [OK] Favorited!
+12:05:18 [15/55] 蟠龙山瀑布公园 (蟠龙路)
+12:05:20   Typed (force click): 蟠龙山瀑布公园 柳州
+12:05:20   Search submitted, waiting for results...
+12:05:23   Clicked result (JS match: '蟠龙山瀑布公园')
+12:05:25   Clicked fav (JS)
+12:05:27   [OK] Favorited!
+12:05:28 [16/55] 聚宝螺蛳粉 (城中区金鱼巷53号)
+12:05:30   Typed (force click): 聚宝螺蛳粉 柳州
+12:05:30   Search submitted, waiting for results...
+12:05:33   Clicked result (JS match: '聚宝螺蛳粉')
+12:05:35   Clicked fav (JS)
+12:05:37   [OK] Favorited!
+12:05:38 [17/55] 黄氏真味螺蛳粉 (柳南区西环路)
+12:05:40   Typed (force click): 黄氏真味螺蛳粉 柳州
+12:05:40   Search submitted, waiting for results...
+12:05:43   Clicked result (JS match: '黄氏真味螺蛳粉')
+12:05:45   Clicked fav (JS)
+12:05:47   [OK] Favorited!
+12:05:48 [18/55] 新月螺蛳粉 (城中区三中路)
+12:05:50   Typed (force click): 新月螺蛳粉 柳州
+12:05:50   Search submitted, waiting for results...
+12:05:53   Clicked result (JS match: '新月螺蛳粉')
+12:05:55   Clicked fav (JS)
+12:05:57   [OK] Favorited!
+12:05:58 [19/55] 阿嬑螺蛳粉 (柳北区胜利路)
+12:06:00   Typed (force click): 阿嬑螺蛳粉 柳州
+12:06:00   Search submitted, waiting for results...
+12:06:03   Clicked result (JS match: '阿嬑螺蛳粉')
+12:06:05   Clicked fav (JS)
+12:06:07   [OK] Favorited!
+12:06:08 [20/55] 六品坊螺蛳粉 (城中区五星步行街旁)
+12:06:10   Typed (force click): 六品坊螺蛳粉 柳州
+12:06:10   Search submitted, waiting for results...
+12:06:13   Clicked result (JS match: '六品坊螺蛳粉')
+12:06:15   Clicked fav (JS)
+12:06:17   [OK] Favorited!
+12:06:18 [21/55] 深巷螺蛳粉 (柳南区城站路)
+12:06:20   Typed (force click): 深巷螺蛳粉 柳州
+12:06:20   Search submitted, waiting for results...
+12:06:23   Clicked result (JS match: '深巷螺蛳粉')
+12:06:25   Clicked fav (JS)
+12:06:27   [OK] Favorited!
+12:06:28 [22/55] 翠翠家螺蛳粉 (鱼峰区细柳巷41号)
+12:06:30   Typed (force click): 翠翠家螺蛳粉 柳州
+12:06:30   Search submitted, waiting for results...
+12:06:33   Clicked result (JS match: '翠翠家螺蛳粉')
+12:06:35   Clicked fav (JS)
+12:06:37   [OK] Favorited!
+12:06:38 [23/55] 罗忆螺蛳粉 (城中区三中路)
+12:06:39   Typed (force click): 罗忆螺蛳粉 柳州
+12:06:39   Search submitted, waiting for results...
+12:06:43   Clicked result (JS match: '罗忆螺蛳粉')
+12:06:45   Clicked fav (JS)
+12:06:47   [OK] Favorited!
+12:06:48 [24/55] 梁婶螺蛳粉 (柳南区城站路南七巷)
+12:06:49   Typed (force click): 梁婶螺蛳粉 柳州
+12:06:49   Search submitted, waiting for results...
+12:06:53   Clicked result (JS match: '梁婶螺蛳粉')
+12:06:55   Clicked fav (JS)
+12:06:57   [OK] Favorited!
+12:06:58 [25/55] 五星商业步行街 (城中区五星路)
+12:06:59   Typed (force click): 五星商业步行街 柳州
+12:06:59   Search submitted, waiting for results...
+12:07:03   Clicked result (JS match: '五星商业步行街')
+12:07:05   Clicked fav (JS)
+12:07:07   [OK] Favorited!
+12:07:08 [26/55] 青云美食街 (柳南区青云路)
+12:07:09   Typed (force click): 青云美食街 柳州
+12:07:09   Search submitted, waiting for results...
+12:07:13   Clicked result (JS match: '青云美食街')
+12:07:15   Clicked fav (JS)
+12:07:17   [OK] Favorited!
+12:07:18 [27/55] 谷埠街美食城 (鱼峰区飞鹅二路1号)
+12:07:19   Typed (force click): 谷埠街美食城 柳州
+12:07:19   Search submitted, waiting for results...
+12:07:23   Clicked result (JS match: '谷埠街美食城')
+12:07:25   Clicked fav (JS)
+12:07:27   [OK] Favorited!
+12:07:28 [28/55] 胜利路烧烤城 (柳北区胜利路)
+12:07:29   Typed (force click): 胜利路烧烤城 柳州
+12:07:29   Search submitted, waiting for results...
+12:07:33   Clicked result (JS match: '胜利路烧烤城')
+12:07:35   Clicked fav (JS)
+12:07:37   [OK] Favorited!
+12:07:38 [29/55] 箭盘山宵夜街 (鱼峰区箭盘路)
+12:07:39   Typed (force click): 箭盘山宵夜街 柳州
+12:07:39   Search submitted, waiting for results...
+12:07:43   Clicked result (JS match: '箭盘山宵夜街')
+12:07:45   Clicked fav (JS)
+12:07:46   [OK] Favorited!
+12:07:48 [30/55] 水南路美食街 (城中区水南路)
+12:07:49   Typed (force click): 水南路美食街 柳州
+12:07:49   Search submitted, waiting for results...
+12:07:53   Clicked result (JS match: '水南路美食街')
+12:07:55   Clicked fav (JS)
+12:07:56   [OK] Favorited!
+12:07:58 [31/55] 西来古寺 (城中区曙光东路)
+12:07:59   Typed (force click): 西来古寺 柳州
+12:07:59   Search submitted, waiting for results...
+12:08:03   Clicked result (JS match: '西来古寺')
+12:08:05   Clicked fav (JS)
+12:08:06   [OK] Favorited!
+12:08:08 [32/55] 柳州博物馆 (城中区解放北路37号)
+12:08:09   Typed (force click): 柳州博物馆 柳州
+12:08:09   Search submitted, waiting for results...
+12:08:13   Clicked result (JS match: '柳州博物馆')
+12:08:15   Clicked fav (JS)
+12:08:16   [OK] Favorited!
+12:08:18 [33/55] 柳州文庙 (城中区文惠路)
+12:08:19   Typed (force click): 柳州文庙 柳州
+12:08:19   Search submitted, waiting for results...
+12:08:23   Clicked result (JS match: '柳州文庙')
+12:08:25   Clicked fav (JS)
+12:08:26   [OK] Favorited!
+12:08:28 [34/55] 柳州动物园 (柳南区航银路89号)
+12:08:29   Typed (force click): 柳州动物园 柳州
+12:08:29   Search submitted, waiting for results...
+12:08:33   Clicked result (JS match: '柳州动物园')
+12:08:35   Clicked fav (JS)
+12:08:36   [OK] Favorited!
+12:08:38 [35/55] 地王新天地 (柳北区广场路10号)
+12:08:39   Typed (force click): 地王新天地 柳州
+12:08:39   Search submitted, waiting for results...
+12:08:43   Clicked result (JS match: '地王新天地')
+12:08:45   Clicked fav (JS)
+12:08:46   [OK] Favorited!
+12:08:48 [36/55] 风情港夜市 (鱼峰区柳江边)
+12:08:49   Typed (force click): 风情港夜市 柳州
+12:08:49   Search submitted, waiting for results...
+12:08:52   Clicked result (JS match: '风情港夜市')
+12:08:55   Clicked fav (JS)
+12:08:56   [OK] Favorited!
+12:08:58 [37/55] 娇姐老牌螺蛳粉 (城中区雅儒路)
+12:08:59   Typed (force click): 娇姐老牌螺蛳粉 柳州
+12:08:59   Search submitted, waiting for results...
+12:09:02   Clicked result (JS match: '娇姐老牌螺蛳粉')
+12:09:05   Clicked fav (JS)
+12:09:06   [OK] Favorited!
+12:09:08 [38/55] 天山牛杂城 (鱼峰区天山路)
+12:09:09   Typed (force click): 天山牛杂城 柳州
+12:09:09   Search submitted, waiting for results...
+12:09:12   Clicked result (JS match: '天山牛杂城')
+12:09:15   Clicked fav (JS)
+12:09:16   [OK] Favorited!
+12:09:18 [39/55] 阿历螺蛳粉 (城中区五星街附近)
+12:09:19   Typed (force click): 阿历螺蛳粉 柳州
+12:09:19   Search submitted, waiting for results...
+12:09:22   Clicked result (JS match: '阿历螺蛳粉')
+12:09:25   Clicked fav (JS)
+12:09:26   [OK] Favorited!
+12:09:28 [40/55] 柳喜辣烧烤酒局 (鱼峰区跃进路)
+12:09:29   Typed (force click): 柳喜辣烧烤酒局 柳州
+12:09:29   Search submitted, waiting for results...
+12:09:32   Clicked result (JS match: '柳喜辣烧烤酒局')
+12:09:35   Clicked fav (JS)
+12:09:36   [OK] Favorited!
+12:09:38 [41/55] 新实惠牛肉牛杂火锅 (鱼峰区柳江边)
+12:09:39   Typed (force click): 新实惠牛肉牛杂火锅 柳州
+12:09:39   Search submitted, waiting for results...
+12:09:42   Clicked result (JS match: '新实惠牛肉牛杂火锅')
+12:09:45   Clicked fav (JS)
+12:09:46   [OK] Favorited!
+12:09:48 [42/55] 大华干捞粉 (城中区五星步行街)
+12:09:49   Typed (force click): 大华干捞粉 柳州
+12:09:49   Search submitted, waiting for results...
+12:09:52   Clicked result (JS match: '大华干捞粉')
+12:09:55   Clicked fav (JS)
+12:09:56   [OK] Favorited!
+12:09:58 [43/55] 鱼酱泼奇 (城中区金鱼巷)
+12:09:59   Typed (force click): 鱼酱泼奇 柳州
+12:09:59   Search submitted, waiting for results...
+12:10:02   Clicked result (JS match: '鱼酱泼奇')
+12:10:05   Clicked fav (JS)
+12:10:06   [OK] Favorited!
+12:10:08 [44/55] 乾跃老友粉 (城中区五星步行街附近)
+12:10:09   Typed (force click): 乾跃老友粉 柳州
+12:10:09   Search submitted, waiting for results...
+12:10:12   Clicked result (JS match: '乾跃老友粉')
+12:10:15   Clicked fav (JS)
+12:10:16   [OK] Favorited!
+12:10:18 [45/55] 蒙记老牌豆浆 (城中区)
+12:10:19   Typed (force click): 蒙记老牌豆浆 柳州
+12:10:19   Search submitted, waiting for results...
+12:10:22   Clicked result (JS match: '蒙记老牌豆浆')
+12:10:25   Clicked fav (JS)
+12:10:26   [OK] Favorited!
+12:10:28 [46/55] 金弟炒螺蛳粉 (鱼峰区风情港)
+12:10:29   Typed (force click): 金弟炒螺蛳粉 柳州
+12:10:29   Search submitted, waiting for results...
+12:10:32   Clicked result (JS match: '金弟炒螺蛳粉')
+12:10:35   Clicked fav (JS)
+12:10:36   [OK] Favorited!
+12:10:38 [47/55] 点都得蜜汁鸭腿 (城中区五星步行街)
+12:10:39   Typed (force click): 点都得蜜汁鸭腿 柳州
+12:10:39   Search submitted, waiting for results...
+12:10:42   Clicked result (JS match: '点都得蜜汁鸭腿')
+12:10:45   Clicked fav (JS)
+12:10:46   [OK] Favorited!
+12:10:48 [48/55] 张飞木薯羹 (柳北区胜利路)
+12:10:49   Typed (force click): 张飞木薯羹 柳州
+12:10:49   Search submitted, waiting for results...
+12:10:52   Clicked result (JS match: '张飞木薯羹')
+12:10:55   Clicked fav (JS)
+12:10:56   [OK] Favorited!
+12:10:58 [49/55] 曹妹螺蛳粉 (柳北区柳锌)
+12:10:59   Typed (force click): 曹妹螺蛳粉 柳州
+12:10:59   Search submitted, waiting for results...
+12:11:02   Clicked result (JS match: '曹妹螺蛳粉')
+12:11:05   Clicked fav (JS)
+12:11:06   [OK] Favorited!
+12:11:08 [50/55] 西环肥仔螺蛳粉 (柳南区鹅山路)
+12:11:09   Typed (force click): 西环肥仔螺蛳粉 柳州
+12:11:09   Search submitted, waiting for results...
+12:11:12   Clicked result (JS match: '西环肥仔螺蛳粉')
+12:11:15   Clicked fav (JS)
+12:11:16   [OK] Favorited!
+12:11:18 [51/55] 秋果螺蛳粉 (柳南区红光小区)
+12:11:19   Typed (force click): 秋果螺蛳粉 柳州
+12:11:19   Search submitted, waiting for results...
+12:11:22   Clicked result (JS match: '秋果螺蛳粉')
+12:11:25   Clicked fav (JS)
+12:11:26   [OK] Favorited!
+12:11:28 [52/55] 老牌铁三中螺蛳粉 (柳南区革新一区)
+12:11:29   Typed (force click): 老牌铁三中螺蛳粉 柳州
+12:11:29   Search submitted, waiting for results...
+12:11:32   Clicked result (JS match: '老牌铁三中螺蛳粉')
+12:11:34   Clicked fav (JS)
+12:11:36   [OK] Favorited!
+12:11:38 [53/55] A+臭豆腐 (城中区五星步行街)
+12:11:39   Typed (force click): A+臭豆腐 柳州
+12:11:39   Search submitted, waiting for results...
+12:11:42   Clicked result (JS match: 'A+臭豆腐')
+12:11:44   Clicked fav (JS)
+12:11:46   [OK] Favorited!
+12:11:48 [54/55] 阿婆豆腐花 (鱼峰区公园路)
+12:11:49   Typed (force click): 阿婆豆腐花 柳州
+12:11:49   Search submitted, waiting for results...
+12:11:52   Clicked result (JS match: '阿婆豆腐花')
+12:11:54   Clicked fav (JS)
+12:11:56   [OK] Favorited!
+12:11:57 [55/55] 卢姐炒冰 (城中区五星步行街)
+12:11:59   Typed (force click): 卢姐炒冰 柳州
+12:11:59   Search submitted, waiting for results...
+12:12:02   Clicked result (JS match: '卢姐炒冰')
+12:12:04   Clicked fav (JS)
+12:12:06   [OK] Favorited!
+12:12:07 =======================================================
+12:12:07   RESULTS: 55 OK / 0 FAILED / 55 total
+12:12:07 =======================================================
+12:12:07   [OK] 百里柳江
+12:12:07   [OK] 龙潭公园
+12:12:07   [OK] 立鱼峰
+12:12:07   [OK] 马鞍山公园
+12:12:07   [OK] 柳侯公园
+12:12:07   [OK] 窑埠古镇
+12:12:07   [OK] 柳州工业博物馆
+12:12:07   [OK] 程阳八寨
+12:12:07   [OK] 三江鼓楼
+12:12:07   [OK] 都乐岩风景区
+12:12:07   [OK] 香桥岩溶地质公园
+12:12:07   [OK] 石门仙湖
+12:12:07   [OK] 青云菜市
+12:12:07   [OK] 螺蛳粉产业园
+12:12:07   [OK] 蟠龙山瀑布公园
+12:12:07   [OK] 聚宝螺蛳粉
+12:12:07   [OK] 黄氏真味螺蛳粉
+12:12:07   [OK] 新月螺蛳粉
+12:12:07   [OK] 阿嬑螺蛳粉
+12:12:07   [OK] 六品坊螺蛳粉
+12:12:07   [OK] 深巷螺蛳粉
+12:12:07   [OK] 翠翠家螺蛳粉
+12:12:07   [OK] 罗忆螺蛳粉
+12:12:07   [OK] 梁婶螺蛳粉
+12:12:07   [OK] 五星商业步行街
+12:12:07   [OK] 青云美食街
+12:12:07   [OK] 谷埠街美食城
+12:12:07   [OK] 胜利路烧烤城
+12:12:07   [OK] 箭盘山宵夜街
+12:12:07   [OK] 水南路美食街
+12:12:07   [OK] 西来古寺
+12:12:07   [OK] 柳州博物馆
+12:12:07   [OK] 柳州文庙
+12:12:07   [OK] 柳州动物园
+12:12:07   [OK] 地王新天地
+12:12:07   [OK] 风情港夜市
+12:12:07   [OK] 娇姐老牌螺蛳粉
+12:12:07   [OK] 天山牛杂城
+12:12:07   [OK] 阿历螺蛳粉
+12:12:07   [OK] 柳喜辣烧烤酒局
+12:12:07   [OK] 新实惠牛肉牛杂火锅
+12:12:07   [OK] 大华干捞粉
+12:12:07   [OK] 鱼酱泼奇
+12:12:07   [OK] 乾跃老友粉
+12:12:07   [OK] 蒙记老牌豆浆
+12:12:07   [OK] 金弟炒螺蛳粉
+12:12:07   [OK] 点都得蜜汁鸭腿
+12:12:07   [OK] 张飞木薯羹
+12:12:07   [OK] 曹妹螺蛳粉
+12:12:07   [OK] 西环肥仔螺蛳粉
+12:12:07   [OK] 秋果螺蛳粉
+12:12:07   [OK] 老牌铁三中螺蛳粉
+12:12:07   [OK] A+臭豆腐
+12:12:07   [OK] 阿婆豆腐花
+12:12:07   [OK] 卢姐炒冰
+12:12:07 =======================================================
+12:12:07   Browser stays open. Verify in browser.
+12:12:07   Re-run to add more locations.
