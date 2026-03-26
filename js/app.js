@@ -209,6 +209,14 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 // ===== 更新日志 =====
 const CHANGELOG_DATA = [
     {
+        date: '2026-03-26',
+        items: [
+            { badge: 'new', text: '新增10个小红书/社交平台热门美食点：阿嬷手作、椿记烧鹅、螺蛳鸭脚煲、水南曾姐豆浆、黑子米粉、生辉餐馆、老八大排档、新翔螺蛳粉、季季红火锅、潘姐小吃' },
+            { badge: 'improve', text: '总标记点从55个增至65个，覆盖更多本地人推荐的宝藏美食' },
+            { badge: 'feature', text: '设置每日自动搜索小红书柳州美食推荐并同步更新' }
+        ]
+    },
+    {
         date: '2026-03-24',
         items: [
             { badge: 'feature', text: '全面UI动画优化：Marker弹跳入场、卡片渐入、面板丝滑滑入滑出' },
