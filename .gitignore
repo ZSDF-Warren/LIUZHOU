@@ -1,0 +1,14 @@
+# Browser automation data
+.browser_data/
+
+# IDE / tool
+.codebuddy/
+
+# Temp screenshots & debug
+*.png
+diag_*.txt
+diag2_*.txt
+diag2_*.log
+
+# Sensitive
+cookies.json

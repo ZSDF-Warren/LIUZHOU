@@ -11,6 +11,7 @@
 
 ## 用户偏好 (2026-03-24 添加)
 - **完成任务后默认提交到 git**：每次完成实质性任务改动后，自动 `git add` + `git commit` + `git push`，无需用户额外确认。
+- **高德地图登录问题处理** (2026-03-26)：如果检测到未登录，直接退出并提醒用户，不要自行等待/轮询。
 
 ## 更新日志规则 (2026-03-24 添加)
 - 地图页面右侧有一个"更新日志"按钮
@@ -29,6 +30,14 @@
 - `js/route.js` — 行程路线面板（左侧滑出时间轴）
 - `js/app.js` — 应用入口、事件绑定
 - `liuzhou_attractions_map.html` — 旧版单体文件（保留备份）
+
+## 小红书 MCP 服务 (2026-03-26 登录)
+- 可执行文件：`~\.local\bin\xiaohongshu-mcp-windows-amd64.exe`
+- 端口：18060，端点：`http://localhost:18060/mcp`
+- 已登录，Cookies 有效期约 30 天（至 ~4/25）
+- MCP 协议调用流程：先 POST `initialize` 获取 `Mcp-Session-Id` → 后续请求带该 header
+- PowerShell 中文解码：`[System.Text.Encoding]::UTF8.GetString($resp.RawContentStream.ToArray())`
+- 可用工具：`search_feeds`, `get_feed_detail`, `check_login_status`, `list_feeds` 等
 
 ## 地图技术细节
 - 高德瓦片 GCJ-02 坐标系，原始数据已是 GCJ-02 无需转换

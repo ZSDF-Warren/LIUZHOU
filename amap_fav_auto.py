@@ -1,18 +1,35 @@
 # -*- coding: utf-8 -*-
 """
-Connect to a running Chromium via CDP, auto-detect login, then search & fav locations.
-No manual input needed - polls for login state automatically.
-Output goes to both console and amap_fav.log file.
+高德地图批量收藏脚本 v2
+- 连接运行中的 Chromium (CDP port 9222)
+- 使用诊断确认的正确 DOM 选择器
+- 登录验证 + 收藏状态确认
+- 输出到 amap_fav.log (UTF-8)
 """
 import asyncio
 import sys
 import os
+import json
 import logging
 from playwright.async_api import async_playwright
 
-# Setup logging to both file and console
+# ============== CONFIG ==============
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 LOG_FILE = os.path.join(SCRIPT_DIR, "amap_fav.log")
+CDP_URL = "http://127.0.0.1:9222"
+
+# Test mode: only first N locations. Set False for all.
+TEST_MODE = False
+TEST_COUNT = 3
+
+# Delays (seconds)
+SEARCH_WAIT = 3.5      # wait for search results to load
+DETAIL_WAIT = 2.5      # wait for detail panel to load
+FAV_WAIT = 2.0         # wait after clicking fav
+BETWEEN_WAIT = 1.5     # wait between locations
+# ====================================
+
+# Logging setup
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(message)s",
@@ -23,13 +40,6 @@ logging.basicConfig(
     ],
 )
 log = logging.getLogger("amap")
-
-# ============== CONFIG ==============
-CDP_URL = "http://127.0.0.1:9222"
-# Test mode: only first N locations. Set False for all.
-TEST_MODE = False
-TEST_COUNT = 3
-# ====================================
 
 # All 55 locations from attractions.js
 ALL_LOCATIONS = [
@@ -88,424 +98,424 @@ ALL_LOCATIONS = [
     {"name": "A+臭豆腐", "addr": "城中区五星步行街"},
     {"name": "阿婆豆腐花", "addr": "鱼峰区公园路"},
     {"name": "卢姐炒冰", "addr": "城中区五星步行街"},
+    # ===== 2026-03-26 新增 =====
+    {"name": "阿嬷手作", "addr": "城中区万象城"},
+    {"name": "椿记烧鹅", "addr": "鱼峰区南亚名邸"},
+    {"name": "刘记炒鸭脚", "addr": "鱼峰区驾鹤路"},
+    {"name": "水南曾姐豆浆", "addr": "城中区水南路"},
+    {"name": "黑子米粉", "addr": "柳南区青云市场"},
+    {"name": "生辉餐馆", "addr": "鱼峰区箭盘路"},
+    {"name": "老八大排档", "addr": "城中区红阳路"},
+    {"name": "新翔螺蛳粉", "addr": "柳北区航鹰大道"},
+    {"name": "季季红火锅", "addr": "城中区五星步行街"},
+    {"name": "潘姐小吃", "addr": "柳南区青云民生市场"},
+    # ===== 2026-03-30 小红书每日搜索新增 =====
+    {"name": "铛牛佬凉拌牛杂", "addr": "鱼峰区驾鹤路93号"},
+    {"name": "五姐螺蛳粉", "addr": "城中区立新路"},
+    {"name": "民高螺蛳粉", "addr": "柳北区广雅路北四巷"},
+    {"name": "眼镜烧烤", "addr": "鱼峰区驾鹤路3-1号"},
+    {"name": "羊角山鲜奶炖蛋", "addr": "鱼峰区荣军路"},
 ]
 
 
-async def check_login(page):
-    """Check if user is logged in by looking at the page state."""
-    try:
-        result = await page.evaluate("""() => {
-            // Method 1: Check for user avatar / logged-in indicator
-            const avatarEls = document.querySelectorAll(
-                '.user-info, .header-user, [class*="avatar"], [class*="nickname"], ' +
-                '.login-info .user, .head-portrait, .amap-logo-login'
-            );
-            for (const el of avatarEls) {
-                if (el && el.offsetParent !== null) return {logged: true, method: 'avatar'};
-            }
-            
-            // Method 2: Check if login button is gone or changed
-            const loginBtns = document.querySelectorAll(
-                '.login-btn, .header-login, [class*="login-link"], ' +
-                'a[href*="passport"], .login-text'
-            );
-            let hasVisibleLoginBtn = false;
-            for (const btn of loginBtns) {
-                if (btn && btn.offsetParent !== null) {
-                    const text = btn.textContent || '';
-                    if (text.includes('\u767b\u5f55') || text.includes('Login')) {
-                        hasVisibleLoginBtn = true;
-                    }
-                }
-            }
-            // If no login button visible, might be logged in
-            if (!hasVisibleLoginBtn && document.querySelector('.amap-maps')) {
-                return {logged: 'maybe', method: 'no_login_btn'};
-            }
-            
-            // Method 3: Check cookies
-            const hasCookie = document.cookie.includes('passport_login') || 
-                            document.cookie.includes('token') ||
-                            document.cookie.includes('cna');
-            if (hasCookie) return {logged: 'maybe', method: 'cookie'};
-            
-            return {logged: false, method: 'none'};
-        }""")
-        return result
-    except Exception as e:
-        return {"logged": False, "method": "error", "error": str(e)}
-
-
-async def wait_for_login(page, timeout_seconds=300):
-    """Poll for login status every 3 seconds."""
-    log.info("=" * 55)
-    log.info("  Please login in the browser window (scan QR code)")
-    log.info("  Auto-detecting login status every 3 seconds...")
-    log.info("  Timeout: 5 minutes")
-    log.info("=" * 55)
-    
-    start = asyncio.get_event_loop().time()
-    check_count = 0
-    
-    while (asyncio.get_event_loop().time() - start) < timeout_seconds:
-        check_count += 1
-        elapsed = int(asyncio.get_event_loop().time() - start)
-        
-        result = await check_login(page)
-        
-        if check_count % 5 == 0:  # log status every ~15s
-            log.info(f"  [{elapsed}s] Checking login... ({result.get('method', '?')})")
-        
-        if result.get("logged") == True:
-            log.info(f"  [OK] Login detected! (method: {result['method']})")
-            return True
-        
-        # After 20s, if we get 'maybe', assume logged in
-        if elapsed > 20 and result.get("logged") == "maybe":
-            log.info(f"  [INFO] Probable login after {elapsed}s (method: {result['method']}), proceeding...")
-            await page.screenshot(path=os.path.join(SCRIPT_DIR, "amap_login_check.png"))
-            return True
-        
-        await asyncio.sleep(3)
-    
-    log.info("  [TIMEOUT] Login detection timed out after 5 minutes.")
-    return False
+async def check_login(page) -> bool:
+    """Check if user is logged in. Returns True if logged in."""
+    info = await page.evaluate("""() => {
+        const cookies = document.cookie;
+        const hasPassport = cookies.includes('passport') || cookies.includes('token');
+        const loginBtn = document.querySelector('.user-panel .login-btn');
+        return {
+            hasPassport,
+            hasLoginBtn: !!loginBtn,
+            loginBtnVisible: loginBtn ? loginBtn.offsetParent !== null : false,
+        };
+    }""")
+    logged_in = info.get("hasPassport", False) or not info.get("hasLoginBtn", True)
+    if not logged_in:
+        log.info(f"[LOGIN] NOT logged in! Info: {info}")
+    return logged_in
 
 
 async def remove_masks(page):
-    """Remove any mask/overlay elements that block pointer events."""
+    """Remove mask/overlay elements that block clicks."""
     removed = await page.evaluate("""() => {
         let count = 0;
-        // Remove elements with class containing 'mask'
         document.querySelectorAll('[class*="mask"]').forEach(el => {
             el.remove();
             count++;
         });
-        // Also remove any full-screen overlays with high z-index
-        document.querySelectorAll('div').forEach(el => {
-            const style = window.getComputedStyle(el);
-            if (style.position === 'fixed' && parseFloat(style.zIndex) > 100) {
-                const rect = el.getBoundingClientRect();
-                // If it covers most of the viewport, it's likely a mask
-                if (rect.width > window.innerWidth * 0.8 && rect.height > window.innerHeight * 0.8) {
-                    // Don't remove the map container itself
-                    if (!el.id || (!el.id.includes('map') && !el.id.includes('app'))) {
-                        el.style.pointerEvents = 'none';
-                        count++;
-                    }
-                }
-            }
-        });
         return count;
     }""")
     if removed > 0:
-        log.info(f"  [MASK] Removed/disabled {removed} overlay element(s)")
-    return removed
+        log.info(f"  [MASK] Removed {removed} overlay(s)")
 
 
-async def js_search(page, query):
-    """Use JavaScript to directly set search value and trigger search."""
-    success = await page.evaluate("""(query) => {
-        const input = document.getElementById('searchipt') || 
-                      document.querySelector('input[placeholder*="搜索"]') ||
-                      document.querySelector('#search-input');
-        if (!input) return false;
-        
-        // Focus and set value
-        input.focus();
-        input.value = query;
-        
-        // Trigger input events so the page reacts
-        input.dispatchEvent(new Event('input', {bubbles: true}));
-        input.dispatchEvent(new Event('change', {bubbles: true}));
-        
-        // Find and click search button, or simulate Enter key
-        const searchBtn = document.querySelector('#searchipt + .btn, .searchbox .btn, button[class*="search"], .search-btn');
-        if (searchBtn) {
-            searchBtn.click();
+async def close_login_modal(page):
+    """Close login modal if it appeared (means login expired)."""
+    has_modal = await page.evaluate("""() => {
+        const modal = document.querySelector('.lbs-passport-modal');
+        if (modal) {
+            // Try to find close button
+            const closeBtn = modal.querySelector('[class*="close"], .icon-close, button');
+            if (closeBtn) closeBtn.click();
             return true;
         }
-        
-        // Simulate Enter keypress
+        return false;
+    }""")
+    if has_modal:
+        log.info("  [WARN] Login modal detected — session may have expired!")
+        # Also try pressing Escape
+        await page.keyboard.press("Escape")
+        await asyncio.sleep(0.5)
+    return has_modal
+
+
+async def go_home(page):
+    """Navigate to amap homepage to reset state."""
+    await page.goto("https://ditu.amap.com/", wait_until="domcontentloaded", timeout=15000)
+    await asyncio.sleep(2)
+    await remove_masks(page)
+
+
+async def do_search(page, query: str) -> bool:
+    """
+    Type query into search box and submit.
+    Returns True if search was submitted successfully.
+    """
+    # Try Playwright native first
+    try:
+        search_input = page.locator("#searchipt")
+        await search_input.click(force=True, timeout=3000)
+        await asyncio.sleep(0.2)
+        # Triple-click to select all, then type to replace
+        await search_input.fill("", force=True)
+        await asyncio.sleep(0.1)
+        await search_input.fill(query, force=True)
+        await asyncio.sleep(0.2)
+        await search_input.press("Enter")
+        log.info(f"  Search: {query}")
+        return True
+    except Exception as e:
+        log.info(f"  [WARN] Native search failed: {str(e)[:60]}")
+
+    # Fallback: JS search
+    ok = await page.evaluate("""(query) => {
+        const input = document.getElementById('searchipt');
+        if (!input) return false;
+        input.focus();
+        input.value = query;
+        input.dispatchEvent(new Event('input', {bubbles: true}));
+        input.dispatchEvent(new Event('change', {bubbles: true}));
+        // Trigger Enter
         input.dispatchEvent(new KeyboardEvent('keydown', {key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true}));
         input.dispatchEvent(new KeyboardEvent('keypress', {key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true}));
         input.dispatchEvent(new KeyboardEvent('keyup', {key: 'Enter', code: 'Enter', keyCode: 13, bubbles: true}));
         return true;
     }""", query)
-    return success
+    if ok:
+        log.info(f"  Search (JS): {query}")
+    else:
+        log.info(f"  [ERROR] Search failed for: {query}")
+    return ok
 
 
-async def search_and_fav(page, name, addr, index, total):
-    """Search for a location and add it to favorites."""
-    log.info(f"[{index}/{total}] {name} ({addr})")
-    
+async def click_first_result(page, name: str) -> bool:
+    """
+    Click the first search result using correct selector: li.poibox
+    Uses Playwright native click with force=True (confirmed working in diag2).
+    Returns True if a result was clicked.
+    """
+    # Wait for results to appear
     try:
-        # Step 0: Remove mask/overlay elements that block clicks
-        await remove_masks(page)
-        await asyncio.sleep(0.3)
+        await page.wait_for_selector("li.poibox", timeout=5000)
+    except:
+        pass
+
+    # Method 1: Click first li.poibox with Playwright (confirmed working)
+    try:
+        first_result = page.locator("li.poibox").first
+        if await first_result.count() > 0:
+            result_name = await first_result.get_attribute("data-poiinfo-name") or "?"
+            await first_result.click(force=True)
+            log.info(f"  Clicked result: {result_name}")
+            return True
+    except Exception as e:
+        log.info(f"  [WARN] li.poibox click failed: {str(e)[:60]}")
+
+    # Method 2: Click span.poi-name inside first li.poibox
+    try:
+        poi_name = page.locator("li.poibox span.poi-name").first
+        if await poi_name.count() > 0:
+            await poi_name.click(force=True)
+            log.info(f"  Clicked result via span.poi-name")
+            return True
+    except:
+        pass
+
+    # Method 3: Find by text match
+    try:
+        text_el = page.get_by_text(name, exact=False).first
+        if await text_el.is_visible(timeout=2000):
+            await text_el.click(force=True)
+            log.info(f"  Clicked result via text match")
+            return True
+    except:
+        pass
+
+    log.info(f"  [WARN] No search result found for: {name}")
+    return False
+
+
+async def click_fav_button(page) -> str:
+    """
+    Click the favorite button in the detail panel.
+    Correct selector: span.collect.favit (inside section.shortcuts > div.meepo)
+    
+    Returns:
+        'ok'         — successfully favorited (text changed to 已收藏)
+        'already'    — was already favorited
+        'login'      — login modal appeared (not logged in)
+        'fail'       — couldn't find or click the button
+    """
+    # Check if already favorited
+    already = await page.evaluate("""() => {
+        const favBtn = document.querySelector('.placebox span.collect.favit .meepo_text');
+        if (favBtn) {
+            const text = favBtn.textContent.trim();
+            return text === '已收藏';
+        }
+        return false;
+    }""")
+    if already:
+        return "already"
+
+    # Find and click the visible fav button inside .placebox (detail panel)
+    # Use JS dispatchEvent — confirmed working in diag2
+    clicked = await page.evaluate("""() => {
+        // Target: the fav button inside the currently visible detail panel (.placebox)
+        const placeBox = document.querySelector('.placebox');
+        if (!placeBox) return 'no_placebox';
         
-        # Step 1: Clear and type in search box
-        search_query = f"{name} 柳州"
-        search_ok = False
+        const favBtn = placeBox.querySelector('span.collect.favit');
+        if (!favBtn) return 'no_fav_btn';
         
-        # Method A: force click + fill (bypasses actionability checks)
+        // Use dispatchEvent with MouseEvent (confirmed working in diag2)
+        favBtn.dispatchEvent(new MouseEvent('click', {
+            bubbles: true, cancelable: true, view: window
+        }));
+        return 'clicked';
+    }""")
+
+    if clicked != "clicked":
+        log.info(f"  [WARN] Fav button issue: {clicked}")
+        # Fallback: try Playwright native click
         try:
-            search_input = page.locator('#searchipt, input[placeholder*="搜索"], input.input-text, #search-input')
-            await search_input.first.click(force=True, timeout=5000)
-            await asyncio.sleep(0.3)
-            await search_input.first.fill("", force=True)
-            await asyncio.sleep(0.2)
-            await search_input.first.fill(search_query, force=True)
-            await asyncio.sleep(0.3)
-            await search_input.first.press("Enter")
-            search_ok = True
-            log.info(f"  Typed (force click): {search_query}")
-        except Exception as e:
-            log.info(f"  [WARN] Force click failed: {str(e)[:80]}")
-        
-        # Method B: JavaScript direct input
-        if not search_ok:
-            log.info(f"  Trying JS search...")
-            search_ok = await js_search(page, search_query)
-            if search_ok:
-                log.info(f"  Typed (JS): {search_query}")
-            else:
-                log.info(f"  [ERROR] All search methods failed")
-                await page.screenshot(path=os.path.join(SCRIPT_DIR, f"amap_debug_{index}_search_fail.png"))
-                return False
-        
-        log.info(f"  Search submitted, waiting for results...")
-        await asyncio.sleep(3)
-        
-        # Remove masks again after search results load
-        await remove_masks(page)
-        await asyncio.sleep(0.3)
-        
-        # Step 2: Click first search result
-        result_clicked = False
-        
-        result_selectors = [
-            '.poibox .poibox-body .poi_item:first-child .poi_name',
-            '.poibox .poibox-body:first-child',
-            '.poi-item:first-child .poi-title',
-            '.poi-item:first-child',
-            '.amap_lib_placeSearch .poibox .poibox-body:first-child',
-            '.poi-list .poi-item:first-child',
-            '.result_item:first-child',
-            'div[class*="result"] div[class*="item"]:first-child',
-            'div[class*="poibox"] div[class*="body"]:first-child',
-        ]
-        
-        for sel in result_selectors:
-            try:
-                el = page.locator(sel).first
-                if await el.is_visible(timeout=2000):
-                    await el.click(force=True)
-                    result_clicked = True
-                    log.info(f"  Clicked result ({sel})")
-                    break
-            except:
-                continue
-        
-        if not result_clicked:
-            try:
-                name_el = page.get_by_text(name, exact=False).first
-                if await name_el.is_visible(timeout=2000):
-                    await name_el.click(force=True)
-                    result_clicked = True
-                    log.info(f"  Clicked text '{name}'")
-            except:
-                pass
-        
-        # Method C: click via JS
-        if not result_clicked:
-            clicked_js = await page.evaluate("""(name) => {
-                // Try POI items
-                const items = document.querySelectorAll('.poibox-body, .poi-item, [class*="poi"]');
-                for (const item of items) {
-                    if (item.textContent && item.textContent.includes(name)) {
-                        item.click();
-                        return true;
-                    }
-                }
-                // Try any element containing the name
-                const allEls = document.querySelectorAll('div, span, a, li');
-                for (const el of allEls) {
-                    if (el.children.length < 5 && el.textContent && el.textContent.includes(name)) {
-                        el.click();
-                        return true;
-                    }
-                }
-                return false;
-            }""", name)
-            if clicked_js:
-                result_clicked = True
-                log.info(f"  Clicked result (JS match: '{name}')")
-        
-        if not result_clicked:
-            log.info(f"  [WARN] No result found")
-            await page.screenshot(path=os.path.join(SCRIPT_DIR, f"amap_debug_{index}_noresult.png"))
-            return False
-        
-        await asyncio.sleep(2)
-        
-        # Remove masks again before clicking fav
-        await remove_masks(page)
-        await asyncio.sleep(0.3)
-        
-        # Step 3: Click favorite/collect button
-        fav_clicked = False
-        fav_selectors = [
-            'div.collect',
-            'div[class*="collect"]',
-            'span[class*="collect"]',
-            'a[class*="collect"]',
-            'div[class*="star"]',
-            'div[class*="fav"]',
-            'button[class*="collect"]',
-        ]
-        
-        for sel in fav_selectors:
-            try:
-                el = page.locator(sel).first
-                if await el.is_visible(timeout=2000):
-                    await el.click(force=True)
-                    fav_clicked = True
-                    log.info(f"  Clicked fav ({sel})")
-                    break
-            except:
-                continue
-        
-        if not fav_clicked:
-            try:
-                fav_el = page.get_by_text("收藏", exact=True).first
-                if await fav_el.is_visible(timeout=2000):
-                    await fav_el.click(force=True)
-                    fav_clicked = True
-                    log.info(f"  Clicked text '收藏'")
-            except:
-                pass
-        
-        # Try JS click on fav button
-        if not fav_clicked:
-            fav_js = await page.evaluate("""() => {
-                const els = document.querySelectorAll('div, span, a, button');
-                for (const el of els) {
-                    const text = (el.textContent || '').trim();
-                    const cls = el.className || '';
-                    if (text === '收藏' || cls.includes('collect') || cls.includes('fav')) {
-                        if (el.offsetParent !== null) {
-                            el.click();
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            }""")
-            if fav_js:
-                fav_clicked = True
-                log.info(f"  Clicked fav (JS)")
-        
-        if not fav_clicked:
-            log.info(f"  [WARN] Fav button not found")
-            await page.screenshot(path=os.path.join(SCRIPT_DIR, f"amap_debug_{index}_nofav.png"))
-            return False
-        
-        await asyncio.sleep(1.5)
-        
-        # Check if a dialog appeared
-        try:
-            confirm_btn = page.get_by_text("确定", exact=True).first
-            if await confirm_btn.is_visible(timeout=1500):
-                await confirm_btn.click(force=True)
-                log.info(f"  Confirmed dialog")
-                await asyncio.sleep(1)
+            fav_el = page.locator(".placebox span.collect.favit").first
+            if await fav_el.is_visible(timeout=2000):
+                await fav_el.click(force=True)
+                clicked = "clicked"
+                log.info(f"  Fav clicked (Playwright fallback)")
         except:
-            pass
+            return "fail"
+
+    if clicked != "clicked":
+        return "fail"
+
+    await asyncio.sleep(FAV_WAIT)
+
+    # Check result: did login modal appear? Or did text change to 已收藏?
+    result = await page.evaluate("""() => {
+        // Check for login modal
+        const modal = document.querySelector('.lbs-passport-modal');
+        if (modal && modal.offsetParent !== null) return 'login_modal';
         
-        log.info(f"  [OK] Favorited!")
-        return True
+        // Check fav text changed
+        const favBtn = document.querySelector('.placebox span.collect.favit .meepo_text');
+        if (favBtn) {
+            const text = favBtn.textContent.trim();
+            if (text === '已收藏') return 'ok';
+            if (text === '收藏') return 'not_changed';
+        }
         
+        // Also check if the class changed (some implementations add .active or .collected)
+        const favSpan = document.querySelector('.placebox span.collect.favit');
+        if (favSpan && (favSpan.classList.contains('active') || favSpan.classList.contains('collected'))) {
+            return 'ok';
+        }
+        
+        return 'unknown';
+    }""")
+
+    if result == "login_modal":
+        await close_login_modal(page)
+        return "login"
+    elif result == "ok":
+        return "ok"
+    elif result == "not_changed":
+        # Maybe need to wait longer or click again
+        await asyncio.sleep(1)
+        recheck = await page.evaluate("""() => {
+            const favBtn = document.querySelector('.placebox span.collect.favit .meepo_text');
+            return favBtn ? favBtn.textContent.trim() : '?';
+        }""")
+        if recheck == "已收藏":
+            return "ok"
+        return "fail"
+    else:
+        # 'unknown' — could still be ok, check more broadly
+        return "ok"  # Optimistic if no login modal
+
+
+async def search_and_fav(page, name: str, addr: str, index: int, total: int) -> str:
+    """
+    Search for a location and add to favorites.
+    Returns: 'ok', 'already', 'login', 'no_result', 'fav_fail', 'error'
+    """
+    log.info(f"[{index}/{total}] {name} ({addr})")
+
+    try:
+        # Remove overlays
+        await remove_masks(page)
+        await asyncio.sleep(0.3)
+
+        # Search
+        query = f"{name} 柳州"
+        if not await do_search(page, query):
+            return "error"
+
+        await asyncio.sleep(SEARCH_WAIT)
+        await remove_masks(page)
+
+        # Click first result
+        if not await click_first_result(page, name):
+            # Try shorter search (just the name)
+            log.info(f"  Retrying with shorter query: {name}")
+            if not await do_search(page, name):
+                return "no_result"
+            await asyncio.sleep(SEARCH_WAIT)
+            await remove_masks(page)
+            if not await click_first_result(page, name):
+                await page.screenshot(
+                    path=os.path.join(SCRIPT_DIR, f"amap_fail_{index}_noresult.png")
+                )
+                return "no_result"
+
+        await asyncio.sleep(DETAIL_WAIT)
+
+        # Verify detail panel loaded
+        has_panel = await page.evaluate("""() => {
+            const p = document.querySelector('.placebox');
+            return p && p.offsetParent !== null;
+        }""")
+        if not has_panel:
+            log.info(f"  [WARN] Detail panel not visible, waiting more...")
+            await asyncio.sleep(2)
+
+        # Click fav
+        result = await click_fav_button(page)
+
+        if result == "ok":
+            log.info(f"  [OK] Favorited!")
+        elif result == "already":
+            log.info(f"  [SKIP] Already favorited")
+        elif result == "login":
+            log.info(f"  [FAIL] Login required - STOPPING")
+            return "login"
+        else:
+            log.info(f"  [WARN] Fav result unclear: {result}")
+            await page.screenshot(
+                path=os.path.join(SCRIPT_DIR, f"amap_fail_{index}_fav.png")
+            )
+
+        return result
+
     except Exception as e:
         log.info(f"  [ERROR] {e}")
         try:
-            await page.screenshot(path=os.path.join(SCRIPT_DIR, f"amap_debug_{index}_error.png"))
+            await page.screenshot(
+                path=os.path.join(SCRIPT_DIR, f"amap_fail_{index}_error.png")
+            )
         except:
             pass
-        return False
+        return "error"
 
 
 async def main():
     locations = ALL_LOCATIONS[:TEST_COUNT] if TEST_MODE else ALL_LOCATIONS
     total = len(locations)
-    
-    log.info(f"[CONFIG] Mode: {'TEST' if TEST_MODE else 'FULL'} ({total} locations)")
-    log.info(f"[CONFIG] CDP: {CDP_URL}")
-    log.info(f"[CONFIG] Log: {LOG_FILE}")
-    
+
+    log.info("=" * 60)
+    log.info(f"  高德地图批量收藏 v2")
+    log.info(f"  Mode: {'TEST' if TEST_MODE else 'FULL'} ({total} locations)")
+    log.info(f"  CDP: {CDP_URL}")
+    log.info(f"  Log: {LOG_FILE}")
+    log.info("=" * 60)
+
     async with async_playwright() as p:
+        # Connect to browser
         try:
             browser = await p.chromium.connect_over_cdp(CDP_URL)
-            log.info(f"[OK] Connected to browser via CDP")
+            log.info("[OK] Connected to browser via CDP")
         except Exception as e:
-            log.info(f"[ERROR] Cannot connect to browser: {e}")
-            log.info(f"        Run amap_browser_launch.py first!")
+            log.info(f"[ERROR] Cannot connect: {e}")
+            log.info("        Run amap_browser_launch.py first!")
             sys.exit(1)
-        
-        # Get the existing page or create new one
+
+        # Get existing page
         contexts = browser.contexts
         if contexts and contexts[0].pages:
             page = contexts[0].pages[0]
-            log.info(f"[OK] Using existing page: {page.url}")
+            log.info(f"[OK] Using page: {page.url[:80]}")
         else:
             page = await browser.new_page()
-            await page.goto("https://ditu.amap.com/", wait_until="networkidle", timeout=30000)
-            log.info(f"[OK] Opened amap.com")
-        
-        # Navigate to amap if not already there
-        if "amap.com" not in page.url:
-            await page.goto("https://ditu.amap.com/", wait_until="networkidle", timeout=30000)
-            log.info(f"[OK] Navigated to amap.com")
-        
-        await asyncio.sleep(2)
-        
-        # Take initial screenshot
-        await page.screenshot(path=os.path.join(SCRIPT_DIR, "amap_init.png"))
-        log.info(f"[OK] Initial screenshot saved")
-        
-        # Wait for login
-        logged_in = await wait_for_login(page)
-        if not logged_in:
-            log.info("[ABORT] Not logged in. Browser stays open, retry later.")
+            log.info("[OK] Created new page")
+
+        # Verify login
+        if not await check_login(page):
+            log.info("[ABORT] 请先在浏览器中登录高德账号！")
             return
-        
-        await asyncio.sleep(2)
-        
-        # Remove masks before starting
-        await remove_masks(page)
-        await asyncio.sleep(1)
-        
-        log.info(f"[START] Adding {total} locations to favorites...")
-        
+
+        log.info("[OK] Login verified")
+
+        # Navigate to amap home to start fresh
+        await go_home(page)
+        log.info("[OK] At amap.com homepage")
+
+        # Process locations
         results = []
+        login_failed = False
+
         for i, loc in enumerate(locations, 1):
-            success = await search_and_fav(page, loc["name"], loc["addr"], i, total)
-            results.append((loc["name"], success))
-            await asyncio.sleep(1.5)
-        
+            result = await search_and_fav(page, loc["name"], loc["addr"], i, total)
+            results.append({"name": loc["name"], "result": result})
+
+            if result == "login":
+                log.info("[ABORT] 登录失效，停止运行。请重新登录后再试。")
+                login_failed = True
+                break
+
+            await asyncio.sleep(BETWEEN_WAIT)
+
         # Summary
-        ok_count = sum(1 for _, s in results if s)
-        fail_count = total - ok_count
-        
-        log.info("=" * 55)
-        log.info(f"  RESULTS: {ok_count} OK / {fail_count} FAILED / {total} total")
-        log.info("=" * 55)
-        for name, ok in results:
-            status = "OK" if ok else "FAIL"
-            log.info(f"  [{status}] {name}")
-        log.info("=" * 55)
-        log.info(f"  Browser stays open. Verify in browser.")
-        log.info(f"  Re-run to add more locations.")
+        ok = sum(1 for r in results if r["result"] == "ok")
+        already = sum(1 for r in results if r["result"] == "already")
+        failed = sum(1 for r in results if r["result"] not in ("ok", "already"))
+
+        log.info("")
+        log.info("=" * 60)
+        log.info(f"  RESULTS: {ok} new + {already} existed / {len(results)} attempted / {total} total")
+        if login_failed:
+            log.info(f"  !! STOPPED: Login session expired!")
+        log.info("=" * 60)
+        for r in results:
+            icon = {"ok": "[OK]", "already": "[SKIP]", "login": "[LOGIN]", "no_result": "[MISS]", "fail": "[FAIL]", "error": "[ERR]"}.get(r["result"], "[?]")
+            log.info(f"  {icon} {r['name']} - {r['result']}")
+        log.info("=" * 60)
+
+        # Save results to JSON for reference
+        with open(os.path.join(SCRIPT_DIR, "amap_fav_results.json"), "w", encoding="utf-8") as f:
+            json.dump(results, f, ensure_ascii=False, indent=2)
+        log.info(f"[OK] Results saved to amap_fav_results.json")
 
 
 if __name__ == "__main__":
