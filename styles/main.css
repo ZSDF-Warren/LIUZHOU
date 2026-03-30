@@ -937,13 +937,22 @@ body {
 
 /* ===== 自定义地图图钉 Marker ===== */
 .custom-marker {
-    animation: markerDrop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) both;
     transition: transform 0.2s;
+}
+
+.custom-marker .marker-pin {
+    animation: markerDrop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
 }
 
 .custom-marker:hover {
     transform: scale(1.15) !important;
     z-index: 10000 !important;
+}
+
+/* 去掉 Leaflet divIcon 默认的白色背景和边框 */
+.leaflet-div-icon.custom-marker {
+    background: none !important;
+    border: none !important;
 }
 
 .marker-pin {
@@ -961,6 +970,7 @@ body {
     top: 0; left: 0;
     width: 36px;
     height: 44px;
+    display: block;
 }
 
 .marker-pin-icon {
@@ -987,13 +997,6 @@ body {
 .marker-active .marker-pin {
     animation: markerPulse 1.5s ease-in-out infinite;
 }
-
-/* Marker 延迟动画 */
-.custom-marker:nth-child(1) { animation-delay: 0s; }
-.custom-marker:nth-child(2) { animation-delay: 0.03s; }
-.custom-marker:nth-child(3) { animation-delay: 0.06s; }
-.custom-marker:nth-child(4) { animation-delay: 0.09s; }
-.custom-marker:nth-child(5) { animation-delay: 0.12s; }
 
 /* ===== 更新日志面板 ===== */
 .changelog-overlay {

@@ -210,6 +210,16 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 const CHANGELOG_DATA = [
     {
         date: '2026-03-30',
+        subtitle: '坐标修正',
+        items: [
+            { badge: 'fix', text: '修复图钉(Marker)无法显示的问题：修正CSS动画与Leaflet divIcon的兼容性冲突' },
+            { badge: 'fix', text: '通过高德地图API批量校准全部70个景点的GCJ-02坐标，平均偏移修正约2km' },
+            { badge: 'improve', text: '图钉现在与高德地图底图完美对齐，位置显示准确无误' },
+            { badge: 'improve', text: '去掉Leaflet divIcon默认白色背景，图钉视觉效果更干净' }
+        ]
+    },
+    {
+        date: '2026-03-30',
         items: [
             { badge: 'feature', text: '回程车票已订！G3778 柳州16:02→广州南19:55，车票面板已更新' },
             { badge: 'improve', text: '行程路线Day3时间调整，适配16:02发车的回程安排' },

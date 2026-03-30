@@ -51,10 +51,11 @@ function adjustColor(hex, amount) {
 function createIcon(color, label, cat, delay) {
     const catConf = CATEGORY_ICONS[cat] || CATEGORY_ICONS.landmark;
     const pinSvg = encodeURIComponent(createPinSVG(catConf.pinColor));
+    const animDelay = ((delay || 0) * 0.04).toFixed(2);
 
     return L.divIcon({
         className: 'custom-marker',
-        html: `<div class="marker-pin" style="animation-delay:${(delay || 0) * 0.04}s">
+        html: `<div class="marker-pin" style="animation-delay:${animDelay}s">
             <img class="marker-pin-bg" src="data:image/svg+xml,${pinSvg}" alt="">
             <span class="marker-pin-icon">${catConf.icon}</span>
         </div>`,
