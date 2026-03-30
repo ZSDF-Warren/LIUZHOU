@@ -28,12 +28,27 @@ function getWeatherHTML() {
             </div>
         </div>
         <div style="margin-top:8px;">
-            <div class="train-card" style="opacity:0.7;">
+            <div class="train-card">
                 <div class="train-header">
-                    <span class="train-number">回程</span>
-                    <span class="train-badge train-badge-pending">待定</span>
+                    <span class="train-number">G3778</span>
+                    <span class="train-badge train-badge-ok">回程已购</span>
                 </div>
-                <div style="text-align:center;color:#999;font-size:13px;padding:8px 0;">回程车票尚未购买</div>
+                <div class="train-route">
+                    <div class="train-station">
+                        <div class="train-time">16:02</div>
+                        <div class="train-city">柳州</div>
+                    </div>
+                    <div class="train-mid">
+                        <div class="train-dur">3小时53分</div>
+                        <div class="train-line"></div>
+                        <div class="train-stop">经停</div>
+                    </div>
+                    <div class="train-station">
+                        <div class="train-time">19:55</div>
+                        <div class="train-city">广州南</div>
+                    </div>
+                </div>
+                <div style="text-align:center;color:#888;font-size:12px;padding:4px 0 2px;">4月6日 · 二等座 · 检票口8B</div>
             </div>
         </div>
 

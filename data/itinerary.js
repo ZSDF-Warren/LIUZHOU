@@ -56,10 +56,10 @@ const ITINERARY = [
             { time: "09:30", type: "scenic", title: "柳州文庙", desc: "故宫风建筑，中式建筑爱好者必去。注意：16:00停止入内，上午去最好", icon: "🏛️", attractionId: 33, duration: "1h" },
             { time: "10:30", type: "food", title: "点心：大华干捞粉", desc: "五星步行街老牌粉店，柳州特色干捞粉，粉条Q弹配特制酱料", icon: "🍜", attractionId: 42, duration: "30min" },
             { time: "11:00", type: "scenic", title: "五星步行街扫街购手信", desc: "最后采购！袋装螺蛳粉+金桔蜜饯+每日鲜古早味蛋糕", icon: "🛍️", attractionId: 25, duration: "1h" },
-            { time: "12:00", type: "food", title: "午餐：娇姐老牌螺蛳粉", desc: "柳州螺蛳粉中最辣的一家！最后一顿嗦粉，给味蕾一个火辣告别", icon: "🌶️", attractionId: 37, duration: "40min" },
-            { time: "13:00", type: "food", title: "最后甜品：卢姐炒冰", desc: "芒果+菠萝双拼收尾！解辣+解暑，完美句号", icon: "🧊", attractionId: 55, duration: "15min" },
-            { time: "13:30", type: "transport", title: "返回酒店取行李 → 柳州站", desc: "预留充足时间前往火车站，准备返程", icon: "🧳", attractionId: null, duration: "1h" },
-            { time: "14:30", type: "transport", title: "下午离开柳州", desc: "带着满满的回忆和螺蛳粉特产回家！", icon: "🚄", attractionId: null, duration: "" }
+            { time: "12:30", type: "food", title: "午餐：娇姐老牌螺蛳粉", desc: "柳州螺蛳粉中最辣的一家！最后一顿嗦粉，给味蕾一个火辣告别", icon: "🌶️", attractionId: 37, duration: "40min" },
+            { time: "13:30", type: "food", title: "最后甜品：卢姐炒冰", desc: "芒果+菠萝双拼收尾！解辣+解暑，完美句号", icon: "🧊", attractionId: 55, duration: "15min" },
+            { time: "14:30", type: "transport", title: "返回酒店取行李 → 柳州站", desc: "预留充足时间收拾行李，打车前往柳州站。检票口8B", icon: "🧳", attractionId: null, duration: "1.5h" },
+            { time: "16:02", type: "transport", title: "G3778 柳州→广州南", desc: "16:02发车 → 19:55到达广州南，二等座，历时3小时53分。回家啦～", icon: "🚄", attractionId: null, duration: "3h53min" }
         ]
     }
 ];
