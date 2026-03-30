@@ -92,7 +92,8 @@ function selectAttraction(id) {
     if (markers[id]) {
         markers[id].marker.setIcon(createActiveIcon(a.color, a.id, a.cat));
         const gcjTarget = toGCJ02(a.lat, a.lng);
-        map.flyTo(gcjTarget, a.lat > 25 ? 11 : 14, { duration: 0.8 });
+        // 只居中不缩放，保持用户当前缩放级别，方便连续查看附近店铺
+        map.panTo(gcjTarget, { animate: true, duration: 0.5 });
         markers[id].marker.openPopup();
     }
 
@@ -208,6 +209,14 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 
 // ===== 更新日志 =====
 const CHANGELOG_DATA = [
+    {
+        date: '2026-03-30',
+        subtitle: '交互优化',
+        items: [
+            { badge: 'improve', text: '点击景点只居中不缩放，方便连续查看附近多家店铺' },
+            { badge: 'improve', text: '去掉详情弹窗的背景模糊效果，地图内容更清晰可读' }
+        ]
+    },
     {
         date: '2026-03-30',
         subtitle: '坐标修正',
