@@ -935,7 +935,7 @@ body {
 
 /* ===== 自定义地图图钉 Marker ===== */
 .custom-marker {
-    transition: transform 0.2s;
+    /* 不加 transition，否则缩放地图时 marker 会慢半拍 */
 }
 
 .custom-marker .marker-pin {
@@ -991,9 +991,8 @@ body {
     white-space: nowrap;
 }
 
-/* 活跃 marker 脉冲 */
+/* 活跃 marker — 不使用脉冲动画，避免位移抖动 */
 .marker-active .marker-pin {
-    animation: markerPulse 1.5s ease-in-out infinite;
 }
 
 /* ===== 更新日志面板 ===== */

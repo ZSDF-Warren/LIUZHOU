@@ -220,7 +220,7 @@ const CHANGELOG_DATA = [
         subtitle: '交互优化',
         items: [
             { badge: 'improve', text: '智能缩放策略：点击景点只放大不缩小，放大查看密集区域时不会被自动缩回' },
-            { badge: 'improve', text: '取消图钉入场动画，加载后直接显示，减少视觉干扰' }
+            { badge: 'improve', text: '取消图钉所有动画：入场动画、选中脉冲、hover过渡，地图缩放时图标不再慢半拍' }
         ]
     },
     {
