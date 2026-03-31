@@ -92,8 +92,14 @@ function selectAttraction(id) {
     if (markers[id]) {
         markers[id].marker.setIcon(createActiveIcon(a.color, a.id, a.cat));
         const gcjTarget = toGCJ02(a.lat, a.lng);
-        // 只居中不缩放，保持用户当前缩放级别，方便连续查看附近店铺
-        map.panTo(gcjTarget, { animate: true, duration: 0.5 });
+        // 智能缩放：只放大不缩小
+        // - 远郊景点(lat>25)目标zoom=11，市区景点目标zoom=14
+        // - 如果用户当前已放大到更高级别，保持不变（避免反复缩小）
+        // - 如果当前缩得太小看不清，自动放大到目标级别
+        const targetZoom = a.lat > 25 ? 11 : 14;
+        const currentZoom = map.getZoom();
+        const smartZoom = Math.max(currentZoom, targetZoom);
+        map.flyTo(gcjTarget, smartZoom, { duration: 0.6 });
         markers[id].marker.openPopup();
     }
 
@@ -146,7 +152,7 @@ document.getElementById('filterChips').addEventListener('click', (e) => {
     const filtered = filter === 'all' ? ATTRACTIONS : ATTRACTIONS.filter(a => a.cat === filter);
 
     filtered.forEach((a, idx) => {
-        const icon = createIcon(a.color, a.id, a.cat, idx);
+        const icon = createIcon(a.color, a.id, a.cat);
         const gcjPos = toGCJ02(a.lat, a.lng);
         const marker = L.marker(gcjPos, { icon }).addTo(markerLayer);
         marker.bindPopup(`<div class="popup-title">${a.name}</div><div class="popup-loc">${a.loc}</div>`, { maxWidth: 220, closeButton: false });
@@ -209,6 +215,14 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 
 // ===== 更新日志 =====
 const CHANGELOG_DATA = [
+    {
+        date: '2026-03-31',
+        subtitle: '交互优化',
+        items: [
+            { badge: 'improve', text: '智能缩放策略：点击景点只放大不缩小，放大查看密集区域时不会被自动缩回' },
+            { badge: 'improve', text: '取消图钉入场动画，加载后直接显示，减少视觉干扰' }
+        ]
+    },
     {
         date: '2026-03-30',
         subtitle: '交互优化',

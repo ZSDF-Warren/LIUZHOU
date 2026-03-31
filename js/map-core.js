@@ -48,14 +48,13 @@ function adjustColor(hex, amount) {
 }
 
 // ===== Marker 图标工厂 =====
-function createIcon(color, label, cat, delay) {
+function createIcon(color, label, cat) {
     const catConf = CATEGORY_ICONS[cat] || CATEGORY_ICONS.landmark;
     const pinSvg = encodeURIComponent(createPinSVG(catConf.pinColor));
-    const animDelay = ((delay || 0) * 0.04).toFixed(2);
 
     return L.divIcon({
         className: 'custom-marker',
-        html: `<div class="marker-pin" style="animation-delay:${animDelay}s">
+        html: `<div class="marker-pin">
             <img class="marker-pin-bg" src="data:image/svg+xml,${pinSvg}" alt="">
             <span class="marker-pin-icon">${catConf.icon}</span>
         </div>`,
@@ -114,7 +113,7 @@ const routeLayer = L.layerGroup(); // 路线图层（不默认添加）
 
 function initMarkers() {
     ATTRACTIONS.forEach((a, idx) => {
-        const icon = createIcon(a.color, a.id, a.cat, idx);
+        const icon = createIcon(a.color, a.id, a.cat);
         const gcjPos = toGCJ02(a.lat, a.lng);
         const marker = L.marker(gcjPos, { icon }).addTo(markerLayer);
         marker.bindPopup(`<div class="popup-title">${a.name}</div><div class="popup-loc">${a.loc}</div>`, { maxWidth: 220, closeButton: false });
