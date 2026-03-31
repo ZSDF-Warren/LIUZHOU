@@ -87,7 +87,7 @@ function selectAttraction(id) {
 
     if (prev && markers[prev]) {
         const p = markers[prev].data;
-        markers[prev].marker.setIcon(createIcon(p.color, p.id, p.cat, 0));
+        markers[prev].marker.setIcon(createIcon(p.color, p.id, p.cat));
     }
     if (markers[id]) {
         markers[id].marker.setIcon(createActiveIcon(a.color, a.id, a.cat));

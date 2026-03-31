@@ -935,15 +935,18 @@ body {
 
 /* ===== 自定义地图图钉 Marker ===== */
 .custom-marker {
-    /* 不加 transition，否则缩放地图时 marker 会慢半拍 */
+    /* 不加 transition/transform，Leaflet 通过 transform: translate3d 定位 marker */
 }
 
 .custom-marker .marker-pin {
     /* 不使用入场动画，直接显示 */
 }
 
+/* hover 效果放在内层 .marker-pin 上，不影响 Leaflet 的外层 transform 定位 */
+.custom-marker:hover .marker-pin {
+    transform: scale(1.15);
+}
 .custom-marker:hover {
-    transform: scale(1.15) !important;
     z-index: 10000 !important;
 }
 
