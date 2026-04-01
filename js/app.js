@@ -216,6 +216,17 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 // ===== 更新日志 =====
 const CHANGELOG_DATA = [
     {
+        date: '2026-04-01',
+        subtitle: '每日搜索新增4家',
+        items: [
+            { badge: 'new', text: '新增元姐螺蛳粉（兴怡园总店）— 2万赞「不排队攻略」推荐，连续2天高互动验证' },
+            { badge: 'new', text: '新增顺水湾老牌牛杂火锅（驾鹤旗舰店）— 柳州牛杂三巨头之一，驾鹤路美食聚集地' },
+            { badge: 'new', text: '新增三都李氏烧鸭粉（保利店）— 柳州特色烧鸭粉代表，多帖+本地人推荐' },
+            { badge: 'new', text: '新增肥姐老友粉（五星店）— 广西经典老友粉，五星步行街附近' },
+            { badge: 'improve', text: '地图标记点增至74个，小红书热门分类新增4家' }
+        ]
+    },
+    {
         date: '2026-03-31',
         subtitle: '交互优化',
         items: [
