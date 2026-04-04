@@ -216,6 +216,14 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 // ===== 更新日志 =====
 const CHANGELOG_DATA = [
     {
+        date: '2026-04-04',
+        subtitle: '每日搜索新增1家',
+        items: [
+            { badge: 'new', text: '新增刘姐鲜肉螺蛳粉 — 连续2天高频出现（4/3: 7次跨3帖，4/4: 5次跨3帖），35年老柳州吃货+2044赞帖同时推荐，鲜肉螺蛳粉特色品类' },
+            { badge: 'improve', text: '地图标记点增至75个，新增鲜肉螺蛳粉品类代表' }
+        ]
+    },
+    {
         date: '2026-04-01',
         subtitle: '每日搜索新增4家',
         items: [
