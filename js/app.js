@@ -216,6 +216,15 @@ document.getElementById('panelHandle').addEventListener('click', () => {
 // ===== 更新日志 =====
 const CHANGELOG_DATA = [
     {
+        date: '2026-04-05',
+        subtitle: '每日搜索新增2家',
+        items: [
+            { badge: 'new', text: '新增小柒螺蛳粉（天山总店）— 连续4天出现在搜索结果中，本地人12小时纯吃攻略严选推荐，辣度特色鲜明' },
+            { badge: 'new', text: '新增韦韦木薯羹（怡鑫园店）— 连续3天出现，1082赞帖作者连吃三天，多用户评价比张飞木薯羹更好吃' },
+            { badge: 'improve', text: '地图标记点增至77个，木薯羹品类新增竞品对比' }
+        ]
+    },
+    {
         date: '2026-04-04',
         subtitle: '每日搜索新增1家',
         items: [
