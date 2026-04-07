@@ -1,0 +1,496 @@
+{
+  "date": "2026-04-07",
+  "total_raw": 0,
+  "total_dedup": 36,
+  "high_interact_count": 22,
+  "high_interact": [
+    {
+      "id": "6977143c000000001a02537e",
+      "xsecToken": "ABuOfRnf4h14Uf7J-h94y9wwlB77tM5w03dMgPaSvThZY=",
+      "title": "锐评柳州 13 顿",
+      "user": "林仙泉炖大鹅",
+      "liked": 5302,
+      "collected": 3456,
+      "type": "normal"
+    },
+    {
+      "id": "68f23e83000000000400748b",
+      "xsecToken": "ABXNVKnrjmFFN3D6jnoAi-cKHqoHGNAEqZ-qiojmh8rVQ=",
+      "title": "来柳州的第一顿",
+      "user": "小黄瓜刷绿漆",
+      "liked": 2528,
+      "collected": 2754,
+      "type": "normal"
+    },
+    {
+      "id": "68e4aa8e0000000004023e76",
+      "xsecToken": "ABxCAzK2hLB85jNte9IiDfY1JqldvGIZUNZcVD3KlIOFY=",
+      "title": "30岁柳州土著回柳一周都在吃什么",
+      "user": "Chennnn",
+      "liked": 2326,
+      "collected": 398,
+      "type": "normal"
+    },
+    {
+      "id": "69c2afbc0000000023010068",
+      "xsecToken": "ABRmzvoxw1Aq1yK1ajEnGcY4j9c_o2rBKe4tRzm4Ox5U8=",
+      "title": "柳州真正好吃的都不在必吃榜上",
+      "user": "KkkkY-",
+      "liked": 2299,
+      "collected": 2894,
+      "type": "normal"
+    },
+    {
+      "id": "68c42717000000001d0282bd",
+      "xsecToken": "ABmXwEN7gtU2IgZnLc42iKqYhpc2a1MZLhWZfoHqKrr-g=",
+      "title": "柳州五天已回，共吃33家附个人感受",
+      "user": "季听",
+      "liked": 1553,
+      "collected": 1757,
+      "type": "normal"
+    },
+    {
+      "id": "69438bb5000000001d0392e7",
+      "xsecToken": "ABN2nuFUyFTOsf7LmvW1Fu3Wv3ajyWQ2nCEoinrrN8MCI=",
+      "title": "半个假字半个广，无好报！分享柳州天南地北",
+      "user": "派大星和海绵宝宝",
+      "liked": 1169,
+      "collected": 1508,
+      "type": "normal"
+    },
+    {
+      "id": "69b2e91a000000000c00a6ba",
+      "xsecToken": "ABZYRxKxyiHhHYwyegknaSMKfUZXcpXlDG9IaFCy3nVm8=",
+      "title": "二刷柳州第二天！！！",
+      "user": "芝士奶盖🐱",
+      "liked": 1129,
+      "collected": 924,
+      "type": "normal"
+    },
+    {
+      "id": "68c84538000000001b021e2b",
+      "xsecToken": "AB8YewpO15NFTeZGB9LUc0LleVbWg4WS2DQ8mf3v4BYuA=",
+      "title": "柳州【吃吃吃】攻略 但没太按攻略走",
+      "user": "Maxine_xxx",
+      "liked": 1122,
+      "collected": 1259,
+      "type": "normal"
+    },
+    {
+      "id": "68da833c000000001101e59c",
+      "xsecToken": "AB8E-PIfe1rW2xdkX1w6g5oYmZdMGpt0wKoc4mrTw9xJs=",
+      "title": "柳州本地人总结的《柳州12小时纯吃攻略》",
+      "user": "圆噜噜要减肥",
+      "liked": 848,
+      "collected": 806,
+      "type": "normal"
+    },
+    {
+      "id": "699bed1f000000002801d11f",
+      "xsecToken": "ABvqXrV-_NIBiqvrgqszhgqk4XYFC3DNrvfPtIYZCFG20=",
+      "title": "来柳州最大感受就是，真不一定要去网红店",
+      "user": "香菜炒香菜",
+      "liked": 844,
+      "collected": 879,
+      "type": "normal"
+    },
+    {
+      "id": "69ca8cbe000000001f000f1f",
+      "xsecToken": "AB-tx25RCODsj3hx3bk059VFDmly20q-HJGuE6kpQbZXE=",
+      "title": "J人对自己熬夜复盘的柳州攻略满意到睡不着…",
+      "user": "美少女壮士🐽",
+      "liked": 770,
+      "collected": 764,
+      "type": "normal"
+    },
+    {
+      "id": "696331940000000022020bdf",
+      "xsecToken": "ABpwVzDp49rwoomO4q5hdNTppHPWKjt4rynfhLAImYaOU=",
+      "title": "吃到两眼发懵",
+      "user": "绵绵",
+      "liked": 700,
+      "collected": 687,
+      "type": "normal"
+    },
+    {
+      "id": "69c90657000000002102e7ac",
+      "xsecToken": "ABC5kCTr-ng1QI0gbL18ynV8GrgGkChgRPGNqs6Ibslj0=",
+      "title": "柳州土著 求求推荐～",
+      "user": "时溪时惜",
+      "liked": 545,
+      "collected": 618,
+      "type": "normal"
+    },
+    {
+      "id": "68f23f930000000004007ba7",
+      "xsecToken": "ABXNVKnrjmFFN3D6jnoAi-cF1FJbaqSlbn6_jMH-UAKM8=",
+      "title": "二刷柳州来看看特种兵都吃了啥🤤",
+      "user": "Bofi",
+      "liked": 512,
+      "collected": 563,
+      "type": "normal"
+    },
+    {
+      "id": "691d4f6b000000001f0074b0",
+      "xsecToken": "AB-2d-nRsc5Zh6gZoXXmMTeOGjSwEtvQqjNiDB9HdV2d8=",
+      "title": "柳州特色供参考",
+      "user": "呀呀呀",
+      "liked": 437,
+      "collected": 545,
+      "type": "normal"
+    },
+    {
+      "id": "698eee380000000028021e6f",
+      "xsecToken": "ABw4fJmu7G6kuDqwv3RFUrO1fL9DB5jqZ_3WT_91-1uM8=",
+      "title": "柳州老公带我连续吃了5年的柳州菜",
+      "user": "一个同事刷不到的名字",
+      "liked": 332,
+      "collected": 333,
+      "type": "normal"
+    },
+    {
+      "id": "69a3d4a1000000001a02f7c8",
+      "xsecToken": "ABoi4mm7vegk9StgYy2nHSwuy__EHfEMuLr1uDJmcib9g=",
+      "title": "在柳州三五好友晚餐吃啥？（备忘录📝）",
+      "user": "ᅠᅠ",
+      "liked": 305,
+      "collected": 342,
+      "type": "normal"
+    },
+    {
+      "id": "693b8958000000001e034f5a",
+      "xsecToken": "ABXsE0q-EDhhJn-gJe8OR7C6ig9W2pQ5HaWZmc-Db-TvU=",
+      "title": "柳州吃食",
+      "user": "啦啦",
+      "liked": 280,
+      "collected": 382,
+      "type": "normal"
+    },
+    {
+      "id": "699af003000000001b01e998",
+      "xsecToken": "ABt4Gq32Nsg5dvZ3lhqqkXgjL2W1_JEbRKBbyEx8ymiTk=",
+      "title": "柳州美食自评",
+      "user": "馆长",
+      "liked": 278,
+      "collected": 280,
+      "type": "normal"
+    },
+    {
+      "id": "68d3c48f0000000013035207",
+      "xsecToken": "ABnqIuNbLFTo3T3WRhVCs3rQ-Vql-cFiaM1yHF7DUlddc=",
+      "title": "柳州会吃当地人一家一家分享的含金量",
+      "user": "渡渡鸟",
+      "liked": 258,
+      "collected": 326,
+      "type": "normal"
+    },
+    {
+      "id": "699c10bd0000000015020bf0",
+      "xsecToken": "AB3HGcWPxL8ZnvTzBSxhnj3OcxNBCYCesYa86lcHSbdtM=",
+      "title": "柳州人现身说法：不止螺蛳粉，这些也别错过",
+      "user": "fionalii_",
+      "liked": 251,
+      "collected": 290,
+      "type": "normal"
+    },
+    {
+      "id": "695f5779000000001a037eca",
+      "xsecToken": "ABS0xF8eHGFEWfe2UmGniPXWhxxi1sZCJ-TQpvN0qtiG8=",
+      "title": "",
+      "user": "尼克狐尼克",
+      "liked": 197,
+      "collected": 226,
+      "type": "normal"
+    }
+  ],
+  "all_feeds_summary": [
+    {
+      "id": "6977143c000000001a02537e",
+      "xsecToken": "ABuOfRnf4h14Uf7J-h94y9wwlB77tM5w03dMgPaSvThZY=",
+      "title": "锐评柳州 13 顿",
+      "user": "林仙泉炖大鹅",
+      "liked": 5302,
+      "collected": 3456
+    },
+    {
+      "id": "69c90657000000002102e7ac",
+      "xsecToken": "ABC5kCTr-ng1QI0gbL18ynV8GrgGkChgRPGNqs6Ibslj0=",
+      "title": "柳州土著 求求推荐～",
+      "user": "时溪时惜",
+      "liked": 545,
+      "collected": 618
+    },
+    {
+      "id": "69438bb5000000001d0392e7",
+      "xsecToken": "ABN2nuFUyFTOsf7LmvW1Fu3Wv3ajyWQ2nCEoinrrN8MCI=",
+      "title": "半个假字半个广，无好报！分享柳州天南地北",
+      "user": "派大星和海绵宝宝",
+      "liked": 1169,
+      "collected": 1508
+    },
+    {
+      "id": "68c42717000000001d0282bd",
+      "xsecToken": "ABmXwEN7gtU2IgZnLc42iKqYhpc2a1MZLhWZfoHqKrr-g=",
+      "title": "柳州五天已回，共吃33家附个人感受",
+      "user": "季听",
+      "liked": 1553,
+      "collected": 1757
+    },
+    {
+      "id": "68c84538000000001b021e2b",
+      "xsecToken": "AB8YewpO15NFTeZGB9LUc0LleVbWg4WS2DQ8mf3v4BYuA=",
+      "title": "柳州【吃吃吃】攻略 但没太按攻略走",
+      "user": "Maxine_xxx",
+      "liked": 1122,
+      "collected": 1259
+    },
+    {
+      "id": "695fa928000000001a01dd13",
+      "xsecToken": "ABS0xF8eHGFEWfe2UmGniPXb7vrZyEpFOXBxzgezFJO9Y=",
+      "title": "柳州吃商榜",
+      "user": "offer来好吗 我想上班",
+      "liked": 36,
+      "collected": 4
+    },
+    {
+      "id": "12030a34-0fa0-4c2f-a9ad-8f3e62c28f3d#1775523770669",
+      "xsecToken": "ABPv5W9MlXr7jpOmJ8dQdivYqILqn1NI4EDAqdMora0U4L0w0oAV5j1ZikeGyi0ImFOVvp8KZ3Ggw1TGWnQr3IVYb-S5Tfr3AOazuTHSq5qTk=",
+      "title": "",
+      "user": "",
+      "liked": 0,
+      "collected": 0
+    },
+    {
+      "id": "699c10bd0000000015020bf0",
+      "xsecToken": "AB3HGcWPxL8ZnvTzBSxhnj3OcxNBCYCesYa86lcHSbdtM=",
+      "title": "柳州人现身说法：不止螺蛳粉，这些也别错过",
+      "user": "fionalii_",
+      "liked": 251,
+      "collected": 290
+    },
+    {
+      "id": "69a85e91000000001600806e",
+      "xsecToken": "ABZtMGQeJGa0IbtWjm82oU3hWJOVMlq2tb1djt0lmDu6o=",
+      "title": "柳州人带你吃遍柳州，三天都不够！附美食地图",
+      "user": "橙子不甜",
+      "liked": 53,
+      "collected": 78
+    },
+    {
+      "id": "6909cad500000000040034f4",
+      "xsecToken": "ABB_gQL6RQaMCviWNKfOK8rfEv3UhxbVNV_sf2llMh_Pc=",
+      "title": "",
+      "user": "momo",
+      "liked": 95,
+      "collected": 91
+    },
+    {
+      "id": "695f5779000000001a037eca",
+      "xsecToken": "ABS0xF8eHGFEWfe2UmGniPXWhxxi1sZCJ-TQpvN0qtiG8=",
+      "title": "",
+      "user": "尼克狐尼克",
+      "liked": 197,
+      "collected": 226
+    },
+    {
+      "id": "690ddd8c0000000007023c39",
+      "xsecToken": "ABTr3eRxhj4-jr8RwJxFMb0cmEA0ZspmYCuQPAzojaPPc=",
+      "title": "2025｜柳州去哪吃",
+      "user": "心怡指南",
+      "liked": 164,
+      "collected": 136
+    },
+    {
+      "id": "691d4f6b000000001f0074b0",
+      "xsecToken": "AB-2d-nRsc5Zh6gZoXXmMTeOGjSwEtvQqjNiDB9HdV2d8=",
+      "title": "柳州特色供参考",
+      "user": "呀呀呀",
+      "liked": 437,
+      "collected": 545
+    },
+    {
+      "id": "68e4aa8e0000000004023e76",
+      "xsecToken": "ABxCAzK2hLB85jNte9IiDfY1JqldvGIZUNZcVD3KlIOFY=",
+      "title": "30岁柳州土著回柳一周都在吃什么",
+      "user": "Chennnn",
+      "liked": 2326,
+      "collected": 398
+    },
+    {
+      "id": "698eee380000000028021e6f",
+      "xsecToken": "ABw4fJmu7G6kuDqwv3RFUrO1fL9DB5jqZ_3WT_91-1uM8=",
+      "title": "柳州老公带我连续吃了5年的柳州菜",
+      "user": "一个同事刷不到的名字",
+      "liked": 332,
+      "collected": 333
+    },
+    {
+      "id": "696331940000000022020bdf",
+      "xsecToken": "ABpwVzDp49rwoomO4q5hdNTppHPWKjt4rynfhLAImYaOU=",
+      "title": "吃到两眼发懵",
+      "user": "绵绵",
+      "liked": 700,
+      "collected": 687
+    },
+    {
+      "id": "69521158000000001e017395",
+      "xsecToken": "AB6YTteKjEgD1_s6ghlm9YQMLW9EDQcCK3ywjpWQpmrvI=",
+      "title": "柳州年度十佳好店｜本地版",
+      "user": "小猪拉斯加",
+      "liked": 52,
+      "collected": 54
+    },
+    {
+      "id": "69ca8cbe000000001f000f1f",
+      "xsecToken": "AB-tx25RCODsj3hx3bk059VFDmly20q-HJGuE6kpQbZXE=",
+      "title": "J人对自己熬夜复盘的柳州攻略满意到睡不着…",
+      "user": "美少女壮士🐽",
+      "liked": 770,
+      "collected": 764
+    },
+    {
+      "id": "699bed1f000000002801d11f",
+      "xsecToken": "ABvqXrV-_NIBiqvrgqszhgqk4XYFC3DNrvfPtIYZCFG20=",
+      "title": "来柳州最大感受就是，真不一定要去网红店",
+      "user": "香菜炒香菜",
+      "liked": 844,
+      "collected": 879
+    },
+    {
+      "id": "699af003000000001b01e998",
+      "xsecToken": "ABt4Gq32Nsg5dvZ3lhqqkXgjL2W1_JEbRKBbyEx8ymiTk=",
+      "title": "柳州美食自评",
+      "user": "馆长",
+      "liked": 278,
+      "collected": 280
+    },
+    {
+      "id": "693e83c2000000001e014cb3",
+      "xsecToken": "ABOLBVHaPRaq_u5mAO_rThQ8we1ZapeOawIl9FRUR4jNA=",
+      "title": "柳州| 2天8家粉店从夯到拉（游客个人视角）",
+      "user": "Scentimental",
+      "liked": 174,
+      "collected": 155
+    },
+    {
+      "id": "68f23f930000000004007ba7",
+      "xsecToken": "ABXNVKnrjmFFN3D6jnoAi-cF1FJbaqSlbn6_jMH-UAKM8=",
+      "title": "二刷柳州来看看特种兵都吃了啥🤤",
+      "user": "Bofi",
+      "liked": 512,
+      "collected": 563
+    },
+    {
+      "id": "43c40e9a-e147-4b39-9344-fa60d931c90a#1775523780863",
+      "xsecToken": "ABQPAXIxyDXNvtdTOLQawsYEG69IAJSzYVSTy0oz5KTN-bUZpw-Cb56Bb8baaUZLfMfiuPmuUGgdME52SlwS-_Dy2a6MhKxpcEhZkET3_If2o=",
+      "title": "",
+      "user": "",
+      "liked": 0,
+      "collected": 0
+    },
+    {
+      "id": "693bcabd000000001e028092",
+      "xsecToken": "ABXsE0q-EDhhJn-gJe8OR7C3-JXRjpn1rCxRe0dL6uPy4=",
+      "title": "柳州十大名菜和十大名小吃公布了",
+      "user": "知还",
+      "liked": 7,
+      "collected": 4
+    },
+    {
+      "id": "69c54184000000001a02b2e9",
+      "xsecToken": "AByH1aaa2-BoreycjFlEAG86eqvFh0AQWcQE6P4W3Kv1A=",
+      "title": "柳州土著，请投喂！",
+      "user": "谭女士的za精吐槽笔记",
+      "liked": 120,
+      "collected": 170
+    },
+    {
+      "id": "68f23e83000000000400748b",
+      "xsecToken": "ABXNVKnrjmFFN3D6jnoAi-cKHqoHGNAEqZ-qiojmh8rVQ=",
+      "title": "来柳州的第一顿",
+      "user": "小黄瓜刷绿漆",
+      "liked": 2528,
+      "collected": 2754
+    },
+    {
+      "id": "69b2e91a000000000c00a6ba",
+      "xsecToken": "ABZYRxKxyiHhHYwyegknaSMKfUZXcpXlDG9IaFCy3nVm8=",
+      "title": "二刷柳州第二天！！！",
+      "user": "芝士奶盖🐱",
+      "liked": 1129,
+      "collected": 924
+    },
+    {
+      "id": "68da833c000000001101e59c",
+      "xsecToken": "AB8E-PIfe1rW2xdkX1w6g5oYmZdMGpt0wKoc4mrTw9xJs=",
+      "title": "柳州本地人总结的《柳州12小时纯吃攻略》",
+      "user": "圆噜噜要减肥",
+      "liked": 848,
+      "collected": 806
+    },
+    {
+      "id": "247d28cc-ff95-43a2-9f63-a110b5a2674b#1775523792117",
+      "xsecToken": "AB7CMdKxdxmYSiC8OJiYvhgEXDVPvBFwX2fQgWwlmNyvlGQ4J4oiXVGreGNdhiW7Hb0lza87pT3RrHAFeqnxS-LY8TcuaZ-rmCMiBfppPrVTE=",
+      "title": "",
+      "user": "",
+      "liked": 0,
+      "collected": 0
+    },
+    {
+      "id": "69918b9d000000000a033ad5",
+      "xsecToken": "AB9Xhercevj9TEtVBvMbaGASHT3p0cOYyHlJYdT4DK9G0=",
+      "title": "三刷柳州都吃了些啥～🍜🍲🍞🧋",
+      "user": "momo",
+      "liked": 54,
+      "collected": 37
+    },
+    {
+      "id": "693b8958000000001e034f5a",
+      "xsecToken": "ABXsE0q-EDhhJn-gJe8OR7C6ig9W2pQ5HaWZmc-Db-TvU=",
+      "title": "柳州吃食",
+      "user": "啦啦",
+      "liked": 280,
+      "collected": 382
+    },
+    {
+      "id": "69d30e400000000021012303",
+      "xsecToken": "ABrQ0UeMaYZijoS4R2mVOoMaAJpncTO59SiE0QEEq1KtY=",
+      "title": "柳州美食攻略｜2天1夜吃了啥",
+      "user": "今年真系大个仔",
+      "liked": 3,
+      "collected": 3
+    },
+    {
+      "id": "695cb4e2000000000c035f7a",
+      "xsecToken": "ABn-t6NqexbQEzYoMuIdpm-m6UEnVtAx6M4vQUpv_PSJw=",
+      "title": "在柳州小众但好吃的美食！",
+      "user": "是爱吃的星星人",
+      "liked": 194,
+      "collected": 165
+    },
+    {
+      "id": "69c2afbc0000000023010068",
+      "xsecToken": "ABRmzvoxw1Aq1yK1ajEnGcY4j9c_o2rBKe4tRzm4Ox5U8=",
+      "title": "柳州真正好吃的都不在必吃榜上",
+      "user": "KkkkY-",
+      "liked": 2299,
+      "collected": 2894
+    },
+    {
+      "id": "69a3d4a1000000001a02f7c8",
+      "xsecToken": "ABoi4mm7vegk9StgYy2nHSwuy__EHfEMuLr1uDJmcib9g=",
+      "title": "在柳州三五好友晚餐吃啥？（备忘录📝）",
+      "user": "ᅠᅠ",
+      "liked": 305,
+      "collected": 342
+    },
+    {
+      "id": "68d3c48f0000000013035207",
+      "xsecToken": "ABnqIuNbLFTo3T3WRhVCs3rQ-Vql-cFiaM1yHF7DUlddc=",
+      "title": "柳州会吃当地人一家一家分享的含金量",
+      "user": "渡渡鸟",
+      "liked": 258,
+      "collected": 326
+    }
+  ]
+}
